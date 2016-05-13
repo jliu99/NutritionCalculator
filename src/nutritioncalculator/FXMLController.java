@@ -43,6 +43,12 @@ public class FXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+    public void quitProgram(){
+        System.exit(0);
+    }
+    public void saveProgram(){
+        
+    }
     
 }
