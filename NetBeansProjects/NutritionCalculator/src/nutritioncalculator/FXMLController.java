@@ -35,6 +35,9 @@ public class FXMLController implements Initializable {
      @FXML
     private Menu help;
     
+    @FXML
+    private MenuItem save;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
