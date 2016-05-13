@@ -16,6 +16,20 @@ public class NutritionFacts {
         
     }
     
+    //probably won't want to do it this way, but just in case we want to save line space
+    public NutritionFacts(double cal, double tf, double sf, double tsf, double chol, double sod, double tc, double df, double sug, double pro){
+        calories = cal;
+        total_fat = tf;
+        saturated_fat = sf;
+        trans_fat = tsf;
+        cholesterol = chol;
+        sodium = sod;
+        total_carbohydrate = tc;
+        dietary_fiber = df;
+        sugars = sug;
+        protein = pro;
+    }
+    
     public double getCalories(){
         return calories;
     }
