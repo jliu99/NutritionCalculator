@@ -20,7 +20,7 @@ public class NutritionFacts {
         trans_fat = tsf;
         cholesterol = chol;
         sodium = sod;
-        potassium = p;
+            potassium = p;
         total_carbohydrate = tc;
         dietary_fiber = df;
         sugars = sug;
@@ -114,6 +114,8 @@ public class NutritionFacts {
     public void setProtein(int amount){
         protein = amount;
     }
+    
+    
     
     @Override
     public String toString(){   
