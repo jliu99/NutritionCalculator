@@ -6,6 +6,7 @@
 package nutritioncalculator;
 
 import java.util.Scanner;
+import java.util.TreeMap;
 
 /**
  *
@@ -17,6 +18,10 @@ public class NutritionCalculator {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        //for testing purposes
+        TreeMap foodList = new TreeMap();
+        foodList.put("Bananas", new NutritionFacts(100, 0, 0, 0, 0, 0, 30, 3, 19, 1));
+        
         Scanner input = new Scanner(System.in);
         String command = "";
         System.out.println("Welcome! This is a WIP Nutrition Calculator.");

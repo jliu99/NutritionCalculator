@@ -1,23 +1,18 @@
 package nutritioncalculator;
 
 public class NutritionFacts {
-    private double calories;
-    private double total_fat;
-    private double saturated_fat;
-    private double trans_fat;
-    private double cholesterol;
-    private double sodium;
-    private double total_carbohydrate;
-    private double dietary_fiber;
-    private double sugars;
-    private double protein;
+    private int calories;
+    private int total_fat;
+    private int saturated_fat;
+    private int trans_fat;
+    private int cholesterol;
+    private int sodium;
+    private int total_carbohydrate;
+    private int dietary_fiber;
+    private int sugars;
+    private int protein;
     
-    public NutritionFacts(){
-        
-    }
-    
-    //probably won't want to do it this way, but just in case we want to save line space
-    public NutritionFacts(double cal, double tf, double sf, double tsf, double chol, double sod, double tc, double df, double sug, double pro){
+    public NutritionFacts(int cal, int tf, int sf, int tsf, int chol, int sod, int tc, int df, int sug, int pro){
         calories = cal;
         total_fat = tf;
         saturated_fat = sf;
@@ -30,83 +25,83 @@ public class NutritionFacts {
         protein = pro;
     }
     
-    public double getCalories(){
+    public int getCalories(){
         return calories;
     }
     
-    public void setCalories(double amount){
+    public void setCalories(int amount){
         calories = amount;
     }
     
-    public double getTotalFat(){
+    public int getTotalFat(){
         return total_fat;
     }
     
-    public void setTotalFat(double amount){
+    public void setTotalFat(int amount){
         total_fat = amount;
     }
     
-    public double getSaturatedFat(){
+    public int getSaturatedFat(){
         return saturated_fat;
     }
     
-    public void setSaturatedFat(double amount){
+    public void setSaturatedFat(int amount){
         saturated_fat = amount;
     }
     
-    public double getTransFat(){
+    public int getTransFat(){
         return trans_fat;
     }
     
-    public void setTransFat(double amount){
+    public void setTransFat(int amount){
         trans_fat = amount;
     }
     
-    public double getCholesterol(){
+    public int getCholesterol(){
         return cholesterol;
     }
     
-    public void setCholesterol(double amount){
+    public void setCholesterol(int amount){
         cholesterol = amount;
     }
     
-    public double getSodium(){
+    public int getSodium(){
         return sodium;
     }
     
-    public void setSodium(double amount){
+    public void setSodium(int amount){
         sodium = amount;
     }
     
-    public double getTotalCarb(){
+    public int getTotalCarb(){
         return total_carbohydrate;
     }
     
-    public void setTotalCarb(double amount){
+    public void setTotalCarb(int amount){
         total_carbohydrate = amount;
     }
     
-    public double getDietaryFiber(){
+    public int getDietaryFiber(){
         return dietary_fiber;
     }
     
-    public void setDietaryFiber(double amount){
+    public void setDietaryFiber(int amount){
         dietary_fiber = amount;
     }
     
-    public double getSugars(){
+    public int getSugars(){
         return sugars;
     }
     
-    public void setSugars(double amount){
+    public void setSugars(int amount){
         sugars = amount;
     }
     
-    public double getProtein(){
+    public int getProtein(){
         return protein;
     }
     
-    public void setProtein(double amount){
+    public void setProtein(int amount){
         protein = amount;
     }
     
