@@ -7,18 +7,20 @@ public class NutritionFacts {
     private int trans_fat;
     private int cholesterol;
     private int sodium;
+    private int potassium;
     private int total_carbohydrate;
     private int dietary_fiber;
     private int sugars;
     private int protein;
     
-    public NutritionFacts(int cal, int tf, int sf, int tsf, int chol, int sod, int tc, int df, int sug, int pro){
+    public NutritionFacts(int cal, int tf, int sf, int tsf, int chol, int sod, int p, int tc, int df, int sug, int pro){
         calories = cal;
         total_fat = tf;
         saturated_fat = sf;
         trans_fat = tsf;
         cholesterol = chol;
         sodium = sod;
+        potassium = p;
         total_carbohydrate = tc;
         dietary_fiber = df;
         sugars = sug;
@@ -71,6 +73,14 @@ public class NutritionFacts {
     
     public void setSodium(int amount){
         sodium = amount;
+    }
+    
+    public int getPotassium(){
+        return potassium;
+    }
+    
+    public void setPotassium(int amount){
+        potassium = amount;
     }
     
     public int getTotalCarb(){
