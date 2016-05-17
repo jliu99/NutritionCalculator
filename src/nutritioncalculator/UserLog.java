@@ -14,14 +14,21 @@ public class UserLog {
     
     public UserLog(String s){
         user = s;
-        addCurrentDay();
+        days = new ArrayList<DayEntry>();
+        addDay();
+        //addCurrentDay();
     }
     
     public String getUser(){
         return user;
     }
     
-    public void addDay(Date d){
+    //testing purposes
+    public void addDay(){
+        days.add(new DayEntry());
+    }
+    
+    /*public void addDay(Date d){
         days.add(new DayEntry(d));
     }
     
@@ -37,20 +44,27 @@ public class UserLog {
         }
         return null;
     }
+    */
     
     public DayEntry getDayEntry(int i){
         return days.get(i);
     }
     
-    // Adds to most recent date
-    public void addMeal(ArrayList<String> meal){
-        DayEntry day = getDayEntry(days.size() - 1);
-        day.addMeal(meal);
+    public ArrayList<DayEntry> getDayEntryList(){
+        return days;
     }
     
-    public void addMeal(Date d, ArrayList<String> meal){
+    // Adds to most recent date
+    public void addMeal(ArrayList<String> meal){
+    //  DayEntry day = getDayEntry(days.size() - 1);
+    // For testing purposes
+        DayEntry d = days.get(0);
+        d.addMeal(meal);
+    }
+    
+    /*public void addMeal(Date d, ArrayList<String> meal){
         DayEntry day = getDayEntry(d);
         day.addMeal(meal);
-    }
+    }*/
 
 }

@@ -115,11 +115,13 @@ public class NutritionFacts {
         protein = amount;
     }
     
+    
+    
     @Override
     public String toString(){   
-        return "Calories: " + calories + "/nTotal Fat: " + total_fat + "/nSaturated Fat: " + saturated_fat
-                + "/nTrans Fat: " + trans_fat + "/nCholesterol: " + cholesterol + "/nSodium: " + sodium
-                + "/nTotal Carbohydrate: " + total_carbohydrate + "/nDietary Fiber: " + dietary_fiber
-                + "/nSugars: " + sugars + "/n Protein: " + protein;
+        return "Calories: " + calories + "\nTotal Fat: " + total_fat + "\nSaturated Fat: " + saturated_fat
+                + "\nTrans Fat: " + trans_fat + "\nCholesterol: " + cholesterol + "\nSodium: " + sodium
+                + "\nTotal Carbohydrate: " + total_carbohydrate + "\nDietary Fiber: " + dietary_fiber
+                + "\nSugars: " + sugars + "\nProtein: " + protein;
     }
 }

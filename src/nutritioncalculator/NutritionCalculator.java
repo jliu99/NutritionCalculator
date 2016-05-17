@@ -28,7 +28,15 @@ public class NutritionCalculator implements java.io.Serializable {
     public static void main(String[] args) {
         TreeMap foodList = new TreeMap();
         //for testing purposes
-        try{
+        foodList.put("Bananas", new NutritionFacts(100, 0, 0, 0, 0, 0, 420, 30, 3, 19, 1));
+        foodList.put("Orange", new NutritionFacts(45, 0, 0, 0, 0, 0, 174, 11, 2, 9, 1));
+        foodList.put("Potato", new NutritionFacts(110, 0, 0, 0, 0, 0, 620, 26, 2, 1, 3));
+        foodList.put("Spinach", new NutritionFacts(7, 0, 0, 0, 0, 24, 167, 1, 1, 0, 1));
+        foodList.put("Tomato", new NutritionFacts(22, 0, 0, 0, 0, 6, 292, 5, 2, 3, 1));
+        foodList.put("Spaghetti", new NutritionFacts(221, 1, 0, 0, 0, 1, 62, 43, 3, 1, 8));
+        foodList.put("Meatballs", new NutritionFacts(284, 13, 2, 0, 0, 792, 259, 12, 7, 2, 30));
+        foodList.put("Hot Dog Sausage", new NutritionFacts(151, 13, 4, 0, 40, 567, 79, 2, 0, 1, 5));
+        /*try{
             FileInputStream fileIn = new FileInputStream("foodlist.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
             foodList = (TreeMap) in.readObject();
@@ -45,7 +53,7 @@ public class NutritionCalculator implements java.io.Serializable {
            }catch(Exception ex){
                System.out.println("Something went wrong.");
            }
-        }
+        }*/
         UserLog currentLog = null;
         Scanner input = new Scanner(System.in);
         String command = "";
@@ -74,7 +82,7 @@ public class NutritionCalculator implements java.io.Serializable {
                     System.out.println(str);
                     str = input.nextLine();
                     ArrayList<String> mealContents = new ArrayList<String>();
-                    while(!str.equals("end list")){
+                    while(!str.equals("end meal")){
                         if(foodList.containsKey(str)){
                              mealContents.add(str);
                         } else{
@@ -83,10 +91,18 @@ public class NutritionCalculator implements java.io.Serializable {
                         str = input.nextLine();
                     }
                     currentLog.addMeal(mealContents);
-                    System.out.println("Meal added. You may view all the meals for this day by typing 'view log.'");
+                    System.out.println("Meal added. You may view all the meals for this day by typing 'view log' and calculate the total nutritional value by typing 'get total.'");
                 }
             } else if(command.equals("view log")){
-                
+                for(DayEntry d : currentLog.getDayEntryList()){
+                    System.out.println(d.toString());
+                }
+            } else if(command.equals("get total")){
+                for(DayEntry d: currentLog.getDayEntryList()){
+                    System.out.println("For this day, the nutritional intake totals to the following.");
+                    NutritionFacts nf = d.totalNutritionalValue(foodList);
+                    System.out.println(nf.toString());
+                }
             } else if (!command.equals("quit")){
                 System.out.println("Sorry, I did not understand the command: " + command);
             }
