@@ -67,7 +67,7 @@ public class NutritionCalculator implements java.io.Serializable {
                 String str = input.nextLine();
                 UserLog ul = new UserLog(str);
                 currentLog = ul;
-                System.out.println("Log created. Today's date is already included in the log. You may add meals to your entry for this day by typing 'new meal.'");
+                System.out.println("Log created. Today's date is already included in the log. You may add meals to your entry for this day by typing 'new meal'.");
             } else if(command.equals("new meal")){
                 if(currentLog == null){
                     System.out.println("You haven't created a new log yet. Create a new log, then you can add meals.");
@@ -91,7 +91,7 @@ public class NutritionCalculator implements java.io.Serializable {
                         str = input.nextLine();
                     }
                     currentLog.addMeal(mealContents);
-                    System.out.println("Meal added. You may view all the meals for this day by typing 'view log' and calculate the total nutritional value by typing 'get total.'");
+                    System.out.println("Meal added. You may view all the meals for this day by typing 'view log' and calculate the total nutritional value by typing 'get total'.");
                 }
             } else if(command.equals("view log")){
                 for(DayEntry d : currentLog.getDayEntryList()){
