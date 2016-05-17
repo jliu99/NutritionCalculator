@@ -13,6 +13,22 @@ import java.util.*;
 public class MealEntry {
 
         private ArrayList<String> contents;
-        private NutritionFacts nf;
+        
+        public MealEntry(ArrayList<String> food){
+            food = contents;
+        }
+        
+        public ArrayList<String> getContents(){
+            return contents;
+        }
+        
+        public boolean contains(String s){
+            for(String str : contents){
+                if(s.equals(str)){
+                    return true;
+                }
+            }
+            return false;
+        }
 
 }
