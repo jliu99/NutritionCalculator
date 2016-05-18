@@ -12,6 +12,8 @@ import java.util.TreeMap;
  * @author jl
  */
 public class DefaultFoodList {
+    
+    
     public static void loadFoodList(TreeMap t){
     t.put("Bananas", new NutritionFacts(100, 0, 0, 0, 0, 0, 420, 30, 3, 19, 1));
     t.put("Orange", new NutritionFacts(45, 0, 0, 0, 0, 0, 174, 11, 2, 9, 1));

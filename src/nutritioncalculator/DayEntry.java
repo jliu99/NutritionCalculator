@@ -1,23 +1,21 @@
 package nutritioncalculator;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.TreeMap;
 
 public class DayEntry{
     private ArrayList<MealEntry> meals;
-    private Date date;
-    
-    //Testing purposes
-    public DayEntry(){
-        meals = new ArrayList<MealEntry>();
-    }
+    private String date;
     
     public DayEntry(Date d){
-        date = d;
+        meals = new ArrayList<MealEntry>();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        date = sdf.format(d);
     }
     
-    public Date getDate(){
+    public String getDate(){
         return date;
     }
     

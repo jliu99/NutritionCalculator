@@ -115,8 +115,6 @@ public class NutritionFacts {
         protein = amount;
     }
     
-    
-    
     @Override
     public String toString(){   
         return "Calories: " + calories + "\nTotal Fat: " + total_fat + "\nSaturated Fat: " + saturated_fat

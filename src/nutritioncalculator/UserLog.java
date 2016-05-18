@@ -15,28 +15,23 @@ public class UserLog {
     public UserLog(String s){
         user = s;
         days = new ArrayList<DayEntry>();
-        addDay();
-        //addCurrentDay();
+        addCurrentDay();
     }
     
     public String getUser(){
         return user;
     }
-    
-    //testing purposes
-    public void addDay(){
-        days.add(new DayEntry());
-    }
-    
-    /*public void addDay(Date d){
-        days.add(new DayEntry(d));
-    }
-    
+
     public void addCurrentDay(){
         days.add(new DayEntry(new Date()));
     }
     
-    public DayEntry getDayEntry(Date d){
+    public void addDay(Date d){
+        days.add(new DayEntry(d));
+    }
+    
+    // d must be formated as "MM/dd/yyyy"
+    public DayEntry getDayEntry(String d){
         for(int i = 0; i < days.size(); i++){
             if(d.equals(days.get(i).getDate())){
                 return days.get(i);
@@ -44,7 +39,7 @@ public class UserLog {
         }
         return null;
     }
-    */
+    
     
     public DayEntry getDayEntry(int i){
         return days.get(i);
@@ -56,15 +51,13 @@ public class UserLog {
     
     // Adds to most recent date
     public void addMeal(ArrayList<String> meal){
-    //  DayEntry day = getDayEntry(days.size() - 1);
-    // For testing purposes
-        DayEntry d = days.get(0);
-        d.addMeal(meal);
+      DayEntry day = getDayEntry(days.size() - 1);
+      day.addMeal(meal);
     }
     
-    /*public void addMeal(Date d, ArrayList<String> meal){
-        DayEntry day = getDayEntry(d);
+    public void addMeal(String date, ArrayList<String> meal){
+        DayEntry day = getDayEntry(date);
         day.addMeal(meal);
-    }*/
+    }
 
 }
