@@ -16,46 +16,56 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
-import static nutritioncalculator.DefaultFoodList.loadFoodList;
 
 /**
  *
  * @author kslimmo
  */
 public class NutritionCalculator implements java.io.Serializable {
-
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        TreeMap foodList = new TreeMap();
-        //for testing purposes
-        foodList.put("Bananas", new NutritionFacts(100, 0, 0, 0, 0, 0, 420, 30, 3, 19, 1));
-        foodList.put("Orange", new NutritionFacts(45, 0, 0, 0, 0, 0, 174, 11, 2, 9, 1));
-        foodList.put("Potato", new NutritionFacts(110, 0, 0, 0, 0, 0, 620, 26, 2, 1, 3));
-        foodList.put("Spinach", new NutritionFacts(7, 0, 0, 0, 0, 24, 167, 1, 1, 0, 1));
-        foodList.put("Tomato", new NutritionFacts(22, 0, 0, 0, 0, 6, 292, 5, 2, 3, 1));
-        foodList.put("Spaghetti", new NutritionFacts(221, 1, 0, 0, 0, 1, 62, 43, 3, 1, 8));
-        foodList.put("Meatballs", new NutritionFacts(284, 13, 2, 0, 0, 792, 259, 12, 7, 2, 30));
-        foodList.put("Hot Dog Sausage", new NutritionFacts(151, 13, 4, 0, 40, 567, 79, 2, 0, 1, 5));
-        /*try{
-            FileInputStream fileIn = new FileInputStream("foodlist.ser");
+    public static TreeMap<String, NutritionFacts> foodList;
+    
+    public static void loadFoodList(){
+        try{
+            FileInputStream fileIn = new FileInputStream("savedfiles/foodlist.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            foodList = (TreeMap) in.readObject();
+            foodList = (TreeMap<String, NutritionFacts>) in.readObject();
             in.close();
             fileIn.close();
+        }catch(FileNotFoundException e){
+            DefaultFoodList.loadDefaultFoodList(foodList);
+            saveFoodList(foodList);
         }catch(Exception e){
-            loadFoodList(foodList);
-           try{
-            FileOutputStream fileOut = new FileOutputStream("foodlist.ser");
+            System.out.println("Something went wrong with loading the file.");
+        }
+    }
+    
+    public static void saveFoodList(TreeMap<String, NutritionFacts> t){
+        try{
+            FileOutputStream fileOut = new FileOutputStream("savedfiles/foodlist.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(foodList);
             out.close();
             fileOut.close();
-           }catch(Exception ex){
-               System.out.println("Something went wrong.");
+           } catch(Exception ex){
+               ex.printStackTrace();
+               System.out.println("Something went wrong with saving the file.");
            }
-        }*/
+    }
+    
+    public static void loadUserLog(String s){
+        
+    }
+    
+    public static void saveUserLog(String s){
+    
+    }
+    
+    public static void main(String[] args) {
+        foodList = new TreeMap<String, NutritionFacts>();
+        loadFoodList();
         UserLog currentLog = null;
         Scanner input = new Scanner(System.in);
         String command = "";

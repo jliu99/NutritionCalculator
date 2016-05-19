@@ -1,6 +1,6 @@
 package nutritioncalculator;
 
-public class NutritionFacts {
+public class NutritionFacts implements java.io.Serializable {
     private int calories;
     private int total_fat;
     private int saturated_fat;
