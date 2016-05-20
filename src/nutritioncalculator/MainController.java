@@ -21,7 +21,7 @@ import javafx.scene.layout.BorderPane;
  *
  * @author kslimmo
  */
-public class FXMLController implements Initializable {
+public class MainController implements Initializable {
 
     /**
      * Initializes the controller class.

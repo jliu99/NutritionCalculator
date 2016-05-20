@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 
 /**
  *
@@ -25,7 +28,6 @@ public class NutritionCalculator implements java.io.Serializable {
      */
     public static TreeMap<String, NutritionFacts> foodList;
     public static UserLog currentLog;
-    
     
     public static void loadFoodList(){
         try{
