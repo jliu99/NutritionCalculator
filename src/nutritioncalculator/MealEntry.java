@@ -10,7 +10,7 @@ import java.util.*;
  *
  * @author jl
  */
-public class MealEntry {
+public class MealEntry implements java.io.Serializable{
 
     private ArrayList<String> contents;
     

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.TreeMap;
 
-public class DayEntry{
+public class DayEntry implements java.io.Serializable {
     private ArrayList<MealEntry> meals;
     private String date;
     
@@ -59,7 +59,7 @@ public class DayEntry{
             str += m.toString() + "\n";
         }
         //return "Date: " + date.toString() + "/n" + "On this day you ate the following meals: /n" + str;
-        return "Today you ate the following means: \n" + str;
+        return "Today you ate the following meals: \n" + str;
     }
     
 }

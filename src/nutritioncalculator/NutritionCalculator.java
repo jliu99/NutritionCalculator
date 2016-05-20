@@ -10,9 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
@@ -26,6 +24,7 @@ public class NutritionCalculator implements java.io.Serializable {
      * @param args the command line arguments
      */
     public static TreeMap<String, NutritionFacts> foodList;
+    public static UserLog currentLog;
     
     public static void loadFoodList(){
         try{
@@ -56,21 +55,45 @@ public class NutritionCalculator implements java.io.Serializable {
     }
     
     public static void loadUserLog(String s){
-        
+        try{
+            String filename = s.toLowerCase();
+            FileInputStream fileIn = new FileInputStream("savedfiles/" + filename + ".ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            currentLog = (UserLog) in.readObject();
+            in.close();
+            fileIn.close();
+            System.out.println("Welcome back, " + s + "!");
+        }catch(FileNotFoundException e){
+            System.out.println("User log does not exist!");
+        }catch(Exception e){
+            e.printStackTrace();
+            System.out.println("Something went wrong with loading the file.");
+        }
     }
     
-    public static void saveUserLog(String s){
-    
+    public static void saveUserLog(){
+        try{
+            String filename = currentLog.getUser().toLowerCase();
+            FileOutputStream fileOut = new FileOutputStream("savedfiles/" + filename + ".ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(currentLog);
+            out.close();
+            fileOut.close();
+            System.out.println("File saved!");
+           } catch(Exception ex){
+               ex.printStackTrace();
+               System.out.println("Something went wrong with saving the file.");
+           }
     }
     
     public static void main(String[] args) {
         foodList = new TreeMap<String, NutritionFacts>();
         loadFoodList();
-        UserLog currentLog = null;
+        currentLog = null;
         Scanner input = new Scanner(System.in);
         String command = "";
         System.out.println("Welcome! This is a WIP Nutrition Calculator.");
-        System.out.println("Type: create, quit");
+        System.out.println("Type: create, load, quit");
         while(!command.equals("quit")){
         command = input.nextLine();
         command = command.toLowerCase();
@@ -79,8 +102,16 @@ public class NutritionCalculator implements java.io.Serializable {
                 String str = input.nextLine();
                 UserLog ul = new UserLog(str);
                 currentLog = ul;
-                System.out.println("Log created. Today's date is already included in the log. You may add meals to your entry for this day by typing 'new meal'.");
-            } else if(command.equals("new meal")){
+                saveUserLog();
+                System.out.println("Log created. Today's date is already included in the log. You may add meals to your entry for this day by typing 'new meal' and save by typing 'save'.");
+            } else if(command.equals("load")){
+                System.out.println("Type your name below as you entered it before. Don't add extra spaces or characters.");
+                String str = input.nextLine();
+                loadUserLog(str);
+            } else if(command.equals("save")){
+                System.out.println("Saving...");
+                saveUserLog();
+            }else if(command.equals("new meal")){
                 if(currentLog == null){
                     System.out.println("You haven't created a new log yet. Create a new log, then you can add meals.");
                 } else {
