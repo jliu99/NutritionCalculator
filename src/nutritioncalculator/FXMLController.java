@@ -9,6 +9,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -45,6 +47,12 @@ public class FXMLController implements Initializable {
     @FXML
     private MenuItem load;
     
+    @FXML
+    private MenuItem about;
+    
+    @FXML
+    private MenuItem faq;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -57,6 +65,18 @@ public class FXMLController implements Initializable {
     }
     
     public void loadLog(String s){
+    
+    }
+    
+    public void displayAbout(){
+        Alert dialogBox = new Alert(AlertType.INFORMATION);
+        dialogBox.setTitle("About This Program");
+        dialogBox.setHeaderText(null);
+        dialogBox.setContentText("");
+        dialogBox.showAndWait();
+    }
+ 
+    public void displayFAQ(){
     
     }
     
