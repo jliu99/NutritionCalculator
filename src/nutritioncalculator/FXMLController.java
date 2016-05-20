@@ -39,16 +39,25 @@ public class FXMLController implements Initializable {
     @FXML
     private MenuItem save;
     
+    @FXML
+    private MenuItem close;
+    
+    @FXML
+    private MenuItem load;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
     public void quitProgram(){
-        System.exit(0);
+        System.exit(-1);
     }
-    public void saveProgram(){
+    public void saveLog(){
         
+    }
+    
+    public void loadLog(String s){
+    
     }
     
 }

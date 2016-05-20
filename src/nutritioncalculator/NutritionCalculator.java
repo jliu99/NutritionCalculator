@@ -26,6 +26,7 @@ public class NutritionCalculator implements java.io.Serializable {
     public static TreeMap<String, NutritionFacts> foodList;
     public static UserLog currentLog;
     
+    
     public static void loadFoodList(){
         try{
             FileInputStream fileIn = new FileInputStream("savedfiles/foodlist.ser");
@@ -98,12 +99,7 @@ public class NutritionCalculator implements java.io.Serializable {
         command = input.nextLine();
         command = command.toLowerCase();
             if(command.equals("create")){
-                System.out.println("What is your name?");
-                String str = input.nextLine();
-                UserLog ul = new UserLog(str);
-                currentLog = ul;
-                saveUserLog();
-                System.out.println("Log created. Today's date is already included in the log. You may add meals to your entry for this day by typing 'new meal' and save by typing 'save'.");
+                
             } else if(command.equals("load")){
                 System.out.println("Type your name below as you entered it before. Don't add extra spaces or characters.");
                 String str = input.nextLine();
