@@ -1,6 +1,6 @@
 package nutritioncalculator;
 
-public class NutritionFacts {
+public class NutritionFacts implements java.io.Serializable {
     private int calories;
     private int total_fat;
     private int saturated_fat;
@@ -114,8 +114,6 @@ public class NutritionFacts {
     public void setProtein(int amount){
         protein = amount;
     }
-    
-    
     
     @Override
     public String toString(){   

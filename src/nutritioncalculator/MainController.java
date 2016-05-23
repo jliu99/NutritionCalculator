@@ -9,6 +9,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -19,7 +22,7 @@ import javafx.scene.layout.BorderPane;
  *
  * @author kslimmo
  */
-public class FXMLController implements Initializable {
+public class MainController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -39,16 +42,46 @@ public class FXMLController implements Initializable {
     @FXML
     private MenuItem save;
     
+    @FXML
+    private MenuItem close;
+    
+    @FXML
+    private MenuItem load;
+    
+    @FXML
+    private MenuItem about;
+    
+    @FXML
+    private MenuItem faq;
+    
+    @FXML
+    private Button NewLog;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
     public void quitProgram(){
-        System.exit(0);
+        System.exit(-1);
     }
-    public void saveProgram(){
+    public void saveLog(){
         
+    }
+    
+    public void loadLog(String s){
+    
+    }
+    
+    public void displayAbout(){
+        Alert dialogBox = new Alert(AlertType.INFORMATION);
+        dialogBox.setTitle("About This Program");
+        dialogBox.setHeaderText(null);
+        dialogBox.setContentText("");
+        dialogBox.showAndWait();
+    }
+ 
+    public void displayFAQ(){
+    
     }
     
 }
