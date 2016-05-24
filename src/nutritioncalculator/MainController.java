@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -56,6 +57,15 @@ public class MainController implements Initializable {
     
     @FXML
     private Button NewLog;
+   
+    @FXML
+    private Label labelOne;
+    
+    @FXML
+    private Label labelTwo;
+    
+    @FXML
+    private Label labelThree;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
