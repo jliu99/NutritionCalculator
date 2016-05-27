@@ -12,12 +12,25 @@ import java.util.*;
  */
 public class MealEntry implements java.io.Serializable{
 
-    private ArrayList<String> contents;
+    private ArrayList<NutritionFacts> contents;
     
-    public MealEntry(ArrayList<String> foods){
+    /**
+     *
+     * @param foods
+     */
+    public MealEntry(ArrayList<NutritionFacts> foods){
         contents = foods;
     }
-    
+
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public ArrayList<NutritionFacts> addFoods(NutritionFacts name){
+       contents.add(DefaultFoodList.createNewIngredient(name));
+       return contents;
+    }
     public NutritionFacts totalNutritionalValue(TreeMap t){
         int totalCalories = 0;
         int totalTotalFat = 0;
@@ -32,7 +45,7 @@ public class MealEntry implements java.io.Serializable{
         int totalSugars = 0;
         
         for(int i = 0; i < contents.size(); i++){
-            String food = contents.get(i);
+            NutritionFacts food = contents.get(i);
             NutritionFacts nf = (NutritionFacts)t.get(food);
             totalCalories += nf.getCalories();
             totalTotalFat += nf.getTotalFat();
@@ -48,13 +61,15 @@ public class MealEntry implements java.io.Serializable{
         }
         return new NutritionFacts(totalCalories, totalTotalFat, totalSaturatedFat, totalTransFat, totalCholesterol, totalSodium, totalPotassium, totalTotalCarb, totalDietaryFiber, totalSugars, totalProtein);
     }
- 
+    
+ /*
     @Override
     public String toString(){
         String str = "";
-        for(String s : contents){
+        for(NutritionFacts s : contents){
             str += s + ", ";
         }
         return "Meal: " + str;
     }
+ */
 }
