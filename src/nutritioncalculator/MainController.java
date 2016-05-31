@@ -28,16 +28,16 @@ public class MainController implements Initializable {
     /**
      * Initializes the controller class.
      */
-     @FXML
+    @FXML
     private BorderPane pane;
      
-     @FXML
+    @FXML
     private Menu file;
      
-     @FXML
+    @FXML
     private Menu edit;
     
-     @FXML
+    @FXML
     private Menu help;
     
     @FXML

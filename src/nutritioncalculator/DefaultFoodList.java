@@ -5,6 +5,7 @@
  */
 package nutritioncalculator;
 
+import java.util.ArrayList;
 import java.util.TreeMap;
 import java.util.Scanner;
 
@@ -26,14 +27,17 @@ public class DefaultFoodList {
     t.put("Hot Dog Sausage", new NutritionFacts(151, 13, 4, 0, 40, 567, 79, 2, 0, 1, 5));
     }
     
+    public static void loadAddedRecipes(TreeMap<String, ArrayList<String>> t){
+        
+    }
+    
     /**
      *
      * @param name
      * @return 
      */
-    public static NutritionFacts createNewIngredient(NutritionFacts name){
-        NutritionFacts givenName;
-        givenName = name;
+    public static void createNewIngredient(TreeMap<String, NutritionFacts> t, String s){
+        NutritionFacts nf;
         String calories;
         String totalFats;
         String saturatedFats;
@@ -69,6 +73,11 @@ public class DefaultFoodList {
         System.out.print("Enter the number of proteins:");
         protein = dietNumbers.nextLine();
         
-        return new NutritionFacts(Integer.parseInt(calories), Integer.parseInt(totalFats), Integer.parseInt(saturatedFats),Integer.parseInt(transFat), Integer.parseInt(cholesterol), Integer.parseInt(sodium),Integer.parseInt(potassium), Integer.parseInt(totalCarbohydrate), Integer.parseInt(dietaryFiber), Integer.parseInt(sugars), Integer.parseInt(protein));
+        nf = new NutritionFacts(Integer.parseInt(calories), Integer.parseInt(totalFats), Integer.parseInt(saturatedFats),Integer.parseInt(transFat), Integer.parseInt(cholesterol), Integer.parseInt(sodium),Integer.parseInt(potassium), Integer.parseInt(totalCarbohydrate), Integer.parseInt(dietaryFiber), Integer.parseInt(sugars), Integer.parseInt(protein));
+        t.put(s, nf);
+    }
+    
+    public static void createNewRecipe(){
+    
     }
 }

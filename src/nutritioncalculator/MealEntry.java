@@ -12,13 +12,13 @@ import java.util.*;
  */
 public class MealEntry implements java.io.Serializable{
 
-    private ArrayList<NutritionFacts> contents;
+    private ArrayList<String> contents;
     
     /**
      *
      * @param foods
      */
-    public MealEntry(ArrayList<NutritionFacts> foods){
+    public MealEntry(ArrayList<String> foods){
         contents = foods;
     }
 
@@ -27,9 +27,8 @@ public class MealEntry implements java.io.Serializable{
      * @param name
      * @return
      */
-    public ArrayList<NutritionFacts> addFoods(NutritionFacts name){
-       contents.add(DefaultFoodList.createNewIngredient(name));
-       return contents;
+    public void addFood(String name){
+       contents.add(name);
     }
     public NutritionFacts totalNutritionalValue(TreeMap t){
         int totalCalories = 0;
@@ -45,7 +44,7 @@ public class MealEntry implements java.io.Serializable{
         int totalSugars = 0;
         
         for(int i = 0; i < contents.size(); i++){
-            NutritionFacts food = contents.get(i);
+            String food = contents.get(i);
             NutritionFacts nf = (NutritionFacts)t.get(food);
             totalCalories += nf.getCalories();
             totalTotalFat += nf.getTotalFat();
