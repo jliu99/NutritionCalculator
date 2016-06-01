@@ -26,6 +26,7 @@ public class NutritionCalculator implements java.io.Serializable {
     /**
      * @param args the command line arguments
      */
+    
     public static TreeMap<String, NutritionFacts> foodList;
     public static UserLog currentLog;
     
@@ -89,7 +90,7 @@ public class NutritionCalculator implements java.io.Serializable {
            }
     }
     
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         foodList = new TreeMap<String, NutritionFacts>();
         loadFoodList();
         currentLog = null;
@@ -148,5 +149,5 @@ public class NutritionCalculator implements java.io.Serializable {
                 System.out.println("Sorry, I did not understand the command: " + command);
             }
         }
-    }
+    }*/
 }

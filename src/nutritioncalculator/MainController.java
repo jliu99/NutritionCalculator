@@ -9,89 +9,29 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 
-/**
- * FXML Controller class
- *
- * @author kslimmo
- */
 public class MainController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+     @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        
+    }
+    
     @FXML
     private BorderPane pane;
      
     @FXML
-    private Menu file;
-     
-    @FXML
-    private Menu edit;
+    private Menu file, edit, help;
     
     @FXML
-    private Menu help;
+    private MenuItem save, load, close;
     
     @FXML
-    private MenuItem save;
+    private MenuItem about, howto;
+
     
-    @FXML
-    private MenuItem close;
-    
-    @FXML
-    private MenuItem load;
-    
-    @FXML
-    private MenuItem about;
-    
-    @FXML
-    private MenuItem faq;
-    
-    @FXML
-    private Button NewLog;
-   
-    @FXML
-    private Label labelOne;
-    
-    @FXML
-    private Label labelTwo;
-    
-    @FXML
-    private Label labelThree;
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }
-    public void quitProgram(){
-        System.exit(-1);
-    }
-    public void saveLog(){
-        
-    }
-    
-    public void loadLog(String s){
-    
-    }
-    
-    public void displayAbout(){
-        Alert dialogBox = new Alert(AlertType.INFORMATION);
-        dialogBox.setTitle("About This Program");
-        dialogBox.setHeaderText(null);
-        dialogBox.setContentText("");
-        dialogBox.showAndWait();
-    }
- 
-    public void displayFAQ(){
-    
-    }
     
 }
