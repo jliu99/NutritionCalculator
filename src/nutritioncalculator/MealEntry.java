@@ -6,10 +6,7 @@
 package nutritioncalculator;
 
 import java.util.*;
-/**
- *
- * @author jl
- */
+
 public class MealEntry implements java.io.Serializable{
 
     private ArrayList<String> contents;

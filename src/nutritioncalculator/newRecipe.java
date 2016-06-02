@@ -1,18 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package nutritioncalculator;
 
 import java.util.*;
-/**
- *
- * @author mziad
- */
+
 public class newRecipe {
  
     private ArrayList<String> contents;
+    
     public void addRecipe(String name){
        contents.add(name);
     }
