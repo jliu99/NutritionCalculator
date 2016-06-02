@@ -16,16 +16,34 @@ import javafx.stage.Stage;
  * @author jl
  */
 public class Main extends Application {
-     
+    public static Scene start, main;
+    public static Stage stage;
+    
     @Override
-     public void start(Stage stage) throws Exception {
-         Parent root = FXMLLoader.load(getClass().getResource("Start.fxml"));
-        
-         Scene scene = new Scene(root);
+     public void start(Stage s) throws Exception {
+         stage = s;
          
-         stage.setScene(scene);
+         Parent root = FXMLLoader.load(getClass().getResource("Start.fxml"));
+         start = new Scene(root);
+         
+         root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+         main = new Scene(root);
+         
+         stage.setScene(start);
          stage.show();
      }
+     
+     public static void switchStage() throws Exception {
+         if(!stage.getScene().equals(start)){
+            stage.setScene(start);
+            stage.show(); 
+         }else{
+             stage.setScene(main);
+            stage.show();
+         }
+     }
+     
+
      
      public static void main(String[] args) {
          launch(args);

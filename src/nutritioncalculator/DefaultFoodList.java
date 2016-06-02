@@ -74,10 +74,10 @@ public class DefaultFoodList {
         protein = dietNumbers.nextLine();
         
         nf = new NutritionFacts(Integer.parseInt(calories), Integer.parseInt(totalFats), Integer.parseInt(saturatedFats),Integer.parseInt(transFat), Integer.parseInt(cholesterol), Integer.parseInt(sodium),Integer.parseInt(potassium), Integer.parseInt(totalCarbohydrate), Integer.parseInt(dietaryFiber), Integer.parseInt(sugars), Integer.parseInt(protein));
+        
         t.put(s, nf);
     }
     
     public static void createNewRecipe(){
-    
-    }
+            }
 }
