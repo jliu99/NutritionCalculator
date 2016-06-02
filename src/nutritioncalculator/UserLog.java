@@ -82,5 +82,16 @@ public class UserLog implements java.io.Serializable {
         DayEntry day = getDayEntry(date);
         day.addMeal(meal);
     }
+    
+    public void deleteDayEntry(Date d){
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        String date = "";
+        date = sdf.format(d);
+        for (int i = 0; i < days.size(); i++) {
+            if (date.equals(days.get(i).getDate())) {
+                days.remove(days.get(i));
+            }
+        }
+    }
 
 }
