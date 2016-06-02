@@ -37,7 +37,7 @@ public class MainController implements Initializable {
         ObservableList<String> obvDates = FXCollections.observableArrayList(dates);
         days.setItems(obvDates);
         Text tx = new Text("Select one of the days from the left to view its details.");
-        mainText = new TextFlow(tx);
+        tflow = new TextFlow(tx);
     }
     
     @FXML
@@ -69,7 +69,7 @@ public class MainController implements Initializable {
     private ListView days;
     
     @FXML
-    private TextFlow mainText;
+    private TextFlow tflow;
  
     public void saveLog(){
         NutritionCalculator.saveUserLog();

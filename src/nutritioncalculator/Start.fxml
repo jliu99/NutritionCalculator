@@ -31,11 +31,11 @@
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="NewLog" layoutX="263.0" layoutY="224.0" mnemonicParsing="false" onAction="#promptNewLog" prefHeight="35.0" prefWidth="110.0" text="New Log" />
-                  <TextField fx:id="tf" layoutX="158.0" layoutY="216.0" visible="false" />
-                  <Button fx:id="LoadLog" layoutX="262.0" layoutY="272.0" mnemonicParsing="false" onAction="#promptLoadLog" prefHeight="31.0" prefWidth="110.0" text="Load Log" />
-                  <TextFlow fx:id="tflow" layoutX="141.0" layoutY="19.0" prefHeight="202.0" prefWidth="348.0" />
-                  <Button fx:id="go" layoutX="390.0" layoutY="216.0" mnemonicParsing="false" text="Go" visible="false" />
+                  <Button fx:id="NewLog" layoutX="262.0" layoutY="199.0" mnemonicParsing="false" onAction="#promptNewLog" prefHeight="35.0" prefWidth="110.0" text="New Log" />
+                  <TextField fx:id="tf" layoutX="169.0" layoutY="189.0" visible="false" />
+                  <Button fx:id="LoadLog" layoutX="262.0" layoutY="247.0" mnemonicParsing="false" onAction="#promptLoadLog" prefHeight="31.0" prefWidth="110.0" text="Load Log" />
+                  <TextFlow fx:id="tflow" disable="true" layoutX="173.0" layoutY="28.0" prefHeight="146.0" prefWidth="288.0" />
+                  <Button fx:id="go" layoutX="380.0" layoutY="191.0" mnemonicParsing="false" text="Go" visible="false" />
                </children>
             </AnchorPane>
          </center>

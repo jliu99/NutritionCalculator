@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.TextFlow?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.65" fx:controller="nutritioncalculator.StartController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nutritioncalculator.StartController">
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0">
          <top>
@@ -32,7 +31,7 @@
             <ListView fx:id="days" prefHeight="368.0" prefWidth="143.0" BorderPane.alignment="CENTER" />
          </left>
          <center>
-            <TextFlow fx:id="mainText" prefHeight="291.0" prefWidth="400.0" BorderPane.alignment="CENTER" />
+            <TextFlow fx:id="tflow" prefHeight="291.0" prefWidth="400.0" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
    </children>

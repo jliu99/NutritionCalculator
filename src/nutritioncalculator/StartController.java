@@ -58,12 +58,11 @@ public class StartController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Text t1 = new Text("Welcome to the Nutrition Calculator!");
-        Text t2 = new Text("Are you a new user? Then create a new log with the button below! Otherwise, if you're a returning user, click the Load Log button to get started.");
-        tflow = new TextFlow(t1, t2);
+        Text t1 = new Text("Welcome to the Nutrition Calculator! \n \n"), 
+             t2 = new Text("Are you a new user? Then create a new log with the button below! Otherwise, if you're a returning user, click the Load Log button to get started.");
         tflow.getChildren().add(t1);
         tflow.getChildren().add(t2);
-        Main.stage.show();
+        
     }    
     
     public void quitProgram(){
@@ -82,9 +81,12 @@ public class StartController implements Initializable {
      LoadLog.setVisible(false);
      LoadLog.setManaged(false);
      go.setVisible(true);
+     tf.setVisible(true);
      go.setManaged(true);
-     tflow = new TextFlow(t);
-     Main.stage.show();
+     tf.setManaged(true);
+     tflow.getChildren().clear();
+     tflow.getChildren().add(t);
+     
     }
     
     public void promptLoadLog(){

@@ -16,8 +16,12 @@ import javafx.stage.Stage;
  * @author jl
  */
 public class Main extends Application {
-    public static Scene start, main;
-    public static Stage stage;
+    private static Scene start, main;
+    private static Stage stage;
+    
+    public static void showStage(){
+        stage.show();
+    }
     
     @Override
      public void start(Stage s) throws Exception {
