@@ -41,6 +41,12 @@ public class MainController implements Initializable {
     @FXML
     private MenuItem about, howto;
     
+    @FXML
+    private ListView days, foodsList;
+    
+    @FXML
+    private TextFlow mainText;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         currentMode = "view";
@@ -55,7 +61,8 @@ public class MainController implements Initializable {
         days.setItems(obvDates);
         Text t = new Text("Welcome, " + NutritionCalculator.currentLog.getUser() + "! \n \n");
         Text tx = new Text("Select one of the days from the left to view its details.");
-        tflow = new TextFlow(t, tx);
+        mainText.getChildren().add(t);
+        mainText.getChildren().add(tx);
     }
     
     public void toggleMode(String s){
@@ -84,12 +91,11 @@ public class MainController implements Initializable {
         
     }
     
-    @FXML
-    private ListView days, foodsList;
-    
-    @FXML
-    private TextFlow tflow;
  
+    public void quitProgram(){
+        System.exit(-1);
+    }
+    
     public void saveLog(){
         NutritionCalculator.saveUserLog();
     }
