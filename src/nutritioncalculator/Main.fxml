@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nutritioncalculator.StartController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nutritioncalculator.StartController">
    <children>
-      <BorderPane prefHeight="400.0" prefWidth="600.0">
+      <BorderPane prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <MenuBar BorderPane.alignment="CENTER">
               <menus>
@@ -19,6 +19,13 @@
                     <MenuItem mnemonicParsing="false" text="Close" />
                   </items>
                 </Menu>
+                  <Menu fx:id="mode" mnemonicParsing="false" text="Mode">
+                    <items>
+                      <MenuItem fx:id="view" mnemonicParsing="false" text="View Log" />
+                        <MenuItem fx:id="edit" mnemonicParsing="false" text="Edit Log" />
+                        <MenuItem mnemonicParsing="false" text="View/Edit Ingredients" />
+                    </items>
+                  </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                   <items>
                     <MenuItem mnemonicParsing="false" text="About" />
@@ -28,11 +35,14 @@
             </MenuBar>
          </top>
          <left>
-            <ListView fx:id="days" prefHeight="368.0" prefWidth="143.0" BorderPane.alignment="CENTER" />
+            <ListView fx:id="days" prefWidth="130.0" BorderPane.alignment="CENTER" />
          </left>
          <center>
-            <TextFlow fx:id="tflow" prefHeight="291.0" prefWidth="400.0" BorderPane.alignment="CENTER" />
+            <TextFlow fx:id="tflow" prefHeight="568.0" prefWidth="535.0" BorderPane.alignment="CENTER" />
          </center>
+         <right>
+            <ListView fx:id="foodsList" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </right>
       </BorderPane>
    </children>
 </AnchorPane>

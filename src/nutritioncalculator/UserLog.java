@@ -16,15 +16,11 @@ public class UserLog implements java.io.Serializable {
     public UserLog(String s){
         user = s;
         days = new ArrayList<DayEntry>();
-        addCurrentDay();
+        days.add(new DayEntry(new Date()));
     }
     
     public String getUser(){
         return user;
-    }
-
-    public void addCurrentDay(){
-        days.add(new DayEntry(new Date()));
     }
     
     public void addDay(Date d){

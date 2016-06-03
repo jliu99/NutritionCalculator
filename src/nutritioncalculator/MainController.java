@@ -24,9 +24,26 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
 public class MainController implements Initializable {
-
+    
+    @FXML
+    private BorderPane pane;
+     
+    @FXML
+    private Menu file, mode, help;
+    
+    @FXML
+    private MenuItem save, load, close;
+    
+    @FXML
+    private MenuItem view, edit, ing;
+    private String currentMode;
+    
+    @FXML
+    private MenuItem about, howto;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        currentMode = "view";
         UserLog current = NutritionCalculator.currentLog;
         ArrayList<DayEntry> dayEntries = current.getDayEntryList();
         ArrayList<String> dates = new ArrayList<String>();
@@ -36,21 +53,23 @@ public class MainController implements Initializable {
         dates.add("Total");
         ObservableList<String> obvDates = FXCollections.observableArrayList(dates);
         days.setItems(obvDates);
+        Text t = new Text("Welcome, " + NutritionCalculator.currentLog.getUser() + "! \n \n");
         Text tx = new Text("Select one of the days from the left to view its details.");
-        tflow = new TextFlow(tx);
+        tflow = new TextFlow(t, tx);
     }
     
-    @FXML
-    private BorderPane pane;
-     
-    @FXML
-    private Menu file, help;
-    
-    @FXML
-    private MenuItem save, load, close;
-    
-    @FXML
-    private MenuItem about, howto;
+    public void toggleMode(String s){
+        if(s.equals("view")){
+            
+        }
+        else if(s.equals("edit")){
+        
+        }
+        else if(s.equals("ing")){
+        
+        
+        }
+    }
     
     public void displayAbout(){
         Alert dialogBox = new Alert(Alert.AlertType.INFORMATION);
@@ -66,14 +85,13 @@ public class MainController implements Initializable {
     }
     
     @FXML
-    private ListView days;
+    private ListView days, foodsList;
     
     @FXML
     private TextFlow tflow;
  
     public void saveLog(){
         NutritionCalculator.saveUserLog();
-        NutritionCalculator.saveFoodList(NutritionCalculator.foodList);
     }
     
     public void returnToStart(){
