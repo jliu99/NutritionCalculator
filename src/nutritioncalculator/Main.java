@@ -43,7 +43,7 @@ public class Main extends Application {
             stage.show(); 
          }else{
              stage.setScene(main);
-            stage.show();
+             stage.show();
          }
      }
      

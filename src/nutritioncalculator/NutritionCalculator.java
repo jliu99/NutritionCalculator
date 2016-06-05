@@ -28,6 +28,7 @@ public class NutritionCalculator implements java.io.Serializable {
      */
     
     public static TreeMap<String, NutritionFacts> foodList;
+    public static ArrayList<Recipe> customRecipes;
     public static UserLog currentLog;
     
     public static void loadFoodList(){
@@ -39,13 +40,40 @@ public class NutritionCalculator implements java.io.Serializable {
             fileIn.close();
         }catch(FileNotFoundException e){
             DefaultFoodList.loadDefaultFoodList(foodList);
-            saveFoodList(foodList);
+            saveFoodList();
         }catch(Exception e){
-            System.out.println("Something went wrong with loading the file.");
+            System.out.println("Something went wrong with loading the file: foodlist.ser");
         }
     }
     
-    public static void saveFoodList(TreeMap<String, NutritionFacts> t){
+    public static void loadCustomRecipes(){
+        try{
+            FileInputStream fileIn = new FileInputStream("savedfiles/customrecipes.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            customRecipes = (ArrayList<Recipe>) in.readObject();
+        }catch(FileNotFoundException e){
+            customRecipes = new ArrayList<Recipe>();
+            saveCustomRecipes();
+        }catch(Exception e){
+            System.out.println("Something went wrong the loading the file: customrecipes.ser");
+        }
+      
+    }
+    
+    public static void saveCustomRecipes(){
+        try{
+            FileOutputStream fileOut = new FileOutputStream("savedfiles/customrecipes.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(customRecipes);
+            out.close();
+            fileOut.close();
+           } catch(Exception ex){
+               ex.printStackTrace();
+               System.out.println("Something went wrong with saving the file.");
+           }
+    }
+    
+    public static void saveFoodList(){
         try{
             FileOutputStream fileOut = new FileOutputStream("savedfiles/foodlist.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);

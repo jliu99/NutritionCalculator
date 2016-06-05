@@ -19,8 +19,6 @@ public class DayEntry implements java.io.Serializable {
         return date;
     }
     
-
-    
     public void addMeal(ArrayList<String> meal){
         meals.add(new MealEntry(meal));
     }

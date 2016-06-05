@@ -8,13 +8,13 @@ package nutritioncalculator;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
@@ -36,7 +36,6 @@ public class MainController implements Initializable {
     
     @FXML
     private MenuItem view, edit, ing;
-    private String currentMode;
     
     @FXML
     private MenuItem about, howto;
@@ -44,12 +43,22 @@ public class MainController implements Initializable {
     @FXML
     private ListView days, foodsList;
     
+    
+    private String flView;
+    
     @FXML
     private TextFlow mainText;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        currentMode = "view";
+        flView = "ing";
+    }
+    
+    public void loadUser(){
+        Text t = new Text("Welcome, " + NutritionCalculator.currentLog.getUser() + "! \n \n");
+        Text tx = new Text("Select one of the days from the left to view its details.");
+        mainText.getChildren().add(t);
+        mainText.getChildren().add(tx);
         UserLog current = NutritionCalculator.currentLog;
         ArrayList<DayEntry> dayEntries = current.getDayEntryList();
         ArrayList<String> dates = new ArrayList<String>();
@@ -58,24 +67,39 @@ public class MainController implements Initializable {
         }
         dates.add("Total");
         ObservableList<String> obvDates = FXCollections.observableArrayList(dates);
-        days.setItems(obvDates);
-        Text t = new Text("Welcome, " + NutritionCalculator.currentLog.getUser() + "! \n \n");
-        Text tx = new Text("Select one of the days from the left to view its details.");
-        mainText.getChildren().add(t);
-        mainText.getChildren().add(tx);
+        days.getItems().addAll(obvDates);
     }
     
-    public void toggleMode(String s){
-        if(s.equals("view")){
+    public void loadFoods(){
+        NutritionCalculator.loadFoodList();
+        NutritionCalculator.loadCustomRecipes();
+        loadFoodList();
+        }
+    
+    public void loadFoodList(){
+        ArrayList<String> items = new ArrayList<String>();
+        if(flView.equals("ing")){
+            Set<String> keys = NutritionCalculator.foodList.keySet();
+            for(String s : keys){
+                items.add(s);
+            }
+        } else if(flView.equals("")){
             
         }
-        else if(s.equals("edit")){
+        ObservableList<String> obvFood = FXCollections.observableArrayList(items);
+        foodsList.getItems().addAll(obvFood);
+    }
+    
+    public void toggleViewMode(){
         
-        }
-        else if(s.equals("ing")){
-        
-        
-        }
+    }
+    
+    public void toggleEditMode(){
+    
+    }
+    
+    public void toggleIngMode(){
+    
     }
     
     public void displayAbout(){
@@ -90,7 +114,6 @@ public class MainController implements Initializable {
         Alert dialogBox = new Alert(Alert.AlertType.INFORMATION);
         
     }
-    
  
     public void quitProgram(){
         System.exit(-1);
