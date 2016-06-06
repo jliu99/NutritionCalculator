@@ -12,15 +12,29 @@ public class Recipe {
     private String name;
     private TreeMap<FoodItem, Double> ingredients;
    
-    /*public Recipe(String s, ArrayList<String> list){
+    public Recipe(){
+        
+    }
+    
+    public Recipe(String s, TreeMap<FoodItem, Double> list){
         name=s;
         ingredients=list;
     }
-    */
+    
     public String getName(){
         return name;
     }
     
+    public TreeMap<FoodItem, Double> getIngredients(){
+        return ingredients;
+    }
     
+    public void setName(String s){
+        name = s;
+    }
+    
+    public void setIngredients(TreeMap<FoodItem, Double> t){
+        ingredients = t;
+    }
     
 }

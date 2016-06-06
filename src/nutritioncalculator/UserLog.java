@@ -68,18 +68,12 @@ public class UserLog implements java.io.Serializable {
         return days;
     }
     
-    // Adds to most recent date
-    public void addMeal(ArrayList<String> meal){
-      DayEntry day = getDayEntry(days.size() - 1);
-      day.addMeal(meal);
-    }
-    
     public void addMeal(String date, ArrayList<String> meal){
         DayEntry day = getDayEntry(date);
         day.addMeal(meal);
     }
     
-    public void deleteDayEntry(Date d){
+    public void deleteDay(Date d){
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         String date = "";
         date = sdf.format(d);
@@ -89,5 +83,57 @@ public class UserLog implements java.io.Serializable {
             }
         }
     }
-
+    
+    public void deleteDay(String s){
+        for (int i = 0; i < days.size(); i++) {
+            if (s.equals(days.get(i).getDate())) {
+                days.remove(days.get(i));
+            }
+        }
+    }
+    
+    public NutritionFacts totalNutritionalValue(ArrayList<FoodItem> t){
+        double totalCalories = 0;
+        double totalTotalFat = 0;
+        double totalSaturatedFat = 0;
+        double totalTransFat = 0;
+        double totalCholesterol = 0;
+        double totalSodium = 0;
+        double totalPotassium = 0;
+        double totalTotalCarb = 0;
+        double totalDietaryFiber = 0;
+        double totalProtein = 0;
+        double totalSugars = 0;
+        for(DayEntry d : days){
+            NutritionFacts nf = d.totalNutritionalValue(t);
+            totalCalories += nf.getCalories();
+            totalTotalFat += nf.getTotalFat();
+            totalSaturatedFat += nf.getSaturatedFat();
+            totalTransFat += nf.getTransFat();
+            totalCholesterol += nf.getCholesterol();
+            totalSodium += nf.getSodium();
+            totalPotassium += nf.getPotassium();
+            totalTotalCarb += nf.getTotalCarb();
+            totalDietaryFiber += nf.getDietaryFiber();
+            totalSugars += nf.getSugars();
+            totalProtein += nf.getProtein();
+        }
+        return new NutritionFacts(totalCalories, totalTotalFat, totalSaturatedFat, totalTransFat, totalCholesterol, totalSodium, totalPotassium, totalTotalCarb, totalDietaryFiber, totalSugars, totalProtein);
+    }
+    
+    public NutritionFacts averageNutritionalValue(ArrayList<FoodItem> t){
+        NutritionFacts nf = totalNutritionalValue(t);
+        nf.setCalories(nf.getCalories() / days.size());
+        nf.setTotalFat(nf.getTotalFat() / days.size());
+        nf.setSaturatedFat(nf.getSaturatedFat() / days.size());
+        nf.setTransFat(nf.getTransFat() / days.size());
+        nf.setCholesterol(nf.getCholesterol() / days.size());
+        nf.setSodium(nf.getSodium() / days.size());
+        nf.setPotassium(nf.getPotassium() / days.size());
+        nf.setTotalCarb(nf.getTotalCarb() / days.size());
+        nf.setDietaryFiber(nf.getDietaryFiber() / days.size());
+        nf.setSugars(nf.getSugars() / days.size());
+        nf.setProtein(nf.getProtein() / days.size());
+        return nf;
+    }
 }

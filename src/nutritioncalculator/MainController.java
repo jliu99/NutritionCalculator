@@ -7,8 +7,8 @@ package nutritioncalculator;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -42,20 +43,26 @@ public class MainController implements Initializable {
     private MenuItem about;
     
     @FXML
-    private ListView<String> days, mealList, foodsList, mealContentView;
+    private ListView<String> days, mealList, foodsList, foodContentsView;
     
     @FXML
     private Button loadButton;
     
     @FXML
-    private Button addMealB, editMealB, deleteMealB;
+    private Button addMealB, editMealB, deleteMealB, dayTotalB;
 
     @FXML
     private Button toggleFoodB;
     
+    @FXML
+    private Button cancelB, okB;
+    
     private String flView;
     private boolean addToMealMode;
-    private ArrayList<DayEntry> dayEntries = new ArrayList<DayEntry>();
+    private ArrayList<DayEntry> dayEntries;
+    private static DayEntry currentDay;
+    private static MealEntry currentMeal;
+    private ArrayList<String> mealContents;
     
     @FXML
     private TextFlow mainText;
@@ -72,12 +79,15 @@ public class MainController implements Initializable {
         mainText.getChildren().add(t);
         flView = "ing";
         addToMealMode = false;
+        mealList.setVisible(false);
         loadButton.setVisible(true);
-        toggleViewMode();
+        loadButton.setManaged(true);
+        
     }
     
     public void loadUser(){
         loadButton.setVisible(false);
+        mealList.setVisible(true);
         toggleFoodB.setVisible(true);
         mainText.getChildren().clear();
         Text t = new Text("Welcome, " + NutritionCalculator.currentLog.getUser() + "! \n \n");
@@ -104,7 +114,7 @@ public class MainController implements Initializable {
     
     /*
     
-        MENU
+        MENU + GENERAL FUNCTIONALITY
     
     */
     
@@ -139,15 +149,40 @@ public class MainController implements Initializable {
     }
     
     public void returnToStart(){
-        Alert dialogBox = new Alert(Alert.AlertType.CONFIRMATION);
-        dialogBox.setTitle("Are you sure?");
-        dialogBox.setHeaderText(null);
-        dialogBox.setContentText("This will take you back to the Main Screen.");
-        try {
-            Main.switchStage();
-        } catch (Exception ex) {
-            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        if(!addToMealMode){
+            Alert dialogBox = new Alert(Alert.AlertType.CONFIRMATION);
+            dialogBox.setTitle("Are you sure?");
+            dialogBox.setHeaderText(null);
+            dialogBox.setContentText("This will take you back to the Main Screen. Make sure you have saved!");
+            ButtonType ok = new ButtonType("OK");
+            ButtonType cancel = new ButtonType("Cancel");
+            dialogBox.getButtonTypes().setAll(ok, cancel);
+
+            Optional<ButtonType> result = dialogBox.showAndWait();
+            if (result.get() == ok){
+                try {
+                    Main.switchStage();
+                } catch (Exception ex) {
+                    Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                // User chose CANCEL or closed the dialog; returns to interface.
+            }
+            
+            
+        } else{
+            Alert dialogBox = new Alert(Alert.AlertType.INFORMATION);
+            dialogBox.setTitle("Oops!");
+            dialogBox.setHeaderText(null);
+            dialogBox.setContentText("You're still in the middle of logging a meal. Please try again after you've created or cancelled entering a meal.");
+            dialogBox.showAndWait();
+        }   
+    }
+    
+    public void replaceMainTextMessage(String s){
+          Text t = new Text(s);
+          mainText.getChildren().clear();
+          mainText.getChildren().add(t);
     }
     
     /*
@@ -158,15 +193,39 @@ public class MainController implements Initializable {
     
     //Selects the day and loads the 
     public void selectDay(){
+        mealList.setVisible(true);
         String date = days.getSelectionModel().getSelectedItem();
-        if(date!=null && !date.equals("Total")){
-            DayEntry currentDay = NutritionCalculator.currentLog.getDayEntry(date);
+        if(addToMealMode){
+            replaceMainTextMessage("Please finish creating this meal before you switch to another day.");
+        }else if(date!=null && !date.equals("Total")){
+            currentDay = NutritionCalculator.currentLog.getDayEntry(date);
             ArrayList<MealEntry> meals = currentDay.getMealEntryList();
             if(!meals.isEmpty()){
-                Text t = new Text("Your meal entries for " + date + " are shown below. Select an option to view its details.");
-                ArrayList<String> items = new ArrayList<String>();
-                int i = 1;
-                for(MealEntry m : meals){
+               replaceMainTextMessage("Your meal entries for " + date + " are shown below. Select an option to view its details.");
+               refreshMealList(meals); 
+            } else {
+                replaceMainTextMessage("You have no meal entries for " + date + ". To add a meal, go into Edit Mode and use the Add Meal button, which will appear below.");
+            }
+        } else if(date.equals("Total")){
+            mealList.setVisible(false);
+            mainText.getChildren().clear();
+            ArrayList<DayEntry> dayEntries = NutritionCalculator.currentLog.getDayEntryList();
+            Text t = new Text("You have logged a total " + dayEntries.size() + " days of your eating habits. \n");
+            mainText.getChildren().add(t);
+            String s = NutritionCalculator.currentLog.totalNutritionalValue(NutritionCalculator.foodList).toString();
+            t = new Text("In these " + dayEntries.size() + " days, you have consumed the following totals of nutrients. \n \n" + s + "\n \n");
+            mainText.getChildren().add(t);
+            s = NutritionCalculator.currentLog.averageNutritionalValue(NutritionCalculator.foodList).toString();
+            t = new Text("This means your average nutritional consumption for these " + dayEntries.size() + " days is as follows. \n \n" + s);
+            mainText.getChildren().add(t);
+        }
+    }
+    
+    public void refreshMealList(ArrayList<MealEntry> meals){
+        mealList.getItems().clear();
+        ArrayList<String> items = new ArrayList<String>();
+        int i = 1;
+        for(MealEntry m : meals){
                     items.add("Meal " + i);
                     i++;
                 }
@@ -179,34 +238,67 @@ public class MainController implements Initializable {
                 }catch(Exception e){
             
                 }
-            mealList.getItems().addAll(mealOL);
-            }
-        } else if(date.equals("Total")){
-            
+        mealList.getItems().addAll(mealOL);
+    }
+    
+    public void newMealMode(){
+        toggleViewMode();
+        okB.setVisible(true);
+        cancelB.setVisible(true);
+        mealList.setVisible(false);
+        foodContentsView.setVisible(true);
+        if(foodContentsView.getItems()!=null){
+            foodContentsView.getItems().clear();
+        }
+        if(currentDay==null){
+            replaceMainTextMessage("You need to select a day before you can add a meal. Select a day from the list on the left, then click Add Meal again.");
+        }else{
+            addToMealMode = true;
+            replaceMainTextMessage("You are creating a new meal for this day. To add a dish to your menu, select items from either the food item list or the custom recipe list to the right.");
+            mealContents = new ArrayList<String>();
         }
     }
     
-    public void newMeal(){
-        mealContentView.setVisible(true);
-        addToMealMode = true;
-        Text t = new Text("You are creating a new meal. To add a dish to your menu, select food items from either the");
-        mainText.getChildren().clear();
-        mainText.getChildren().add(t);
+    public void confirmMeal(){
+        toggleEditMode();
+        addToMealMode = false;
+        foodContentsView.setVisible(false);
+        mealList.setVisible(true);
+        if(mealContents.isEmpty()){
+            replaceMainTextMessage("A meal entry cannot be empty. Add some foods to your meal, then press Ok again when you're done.");
+        }else{
+            currentDay.addMeal(mealContents);
+            okB.setVisible(false);
+            cancelB.setVisible(false);
+            refreshMealList(currentDay.getMealEntryList());
+            replaceMainTextMessage("Meal added! You should now see the meal in the list of meals for this day below.");
+        }
+    }
+    
+    public void cancelMeal(){
+        toggleEditMode();
+        addToMealMode = false;
+        foodContentsView.setVisible(false);
+        mealList.setVisible(true);
+        okB.setVisible(false);
+        cancelB.setVisible(false);
+        replaceMainTextMessage("Meal canceled.");
     }
     
     public void toggleViewMode(){
         addMealB.setVisible(false);
         editMealB.setVisible(false);
         deleteMealB.setVisible(false);
+        dayTotalB.setVisible(false);
+        replaceMainTextMessage("You are now in view mode.");
     }
     
     public void toggleEditMode(){
         addMealB.setVisible(true);
         editMealB.setVisible(true);
         deleteMealB.setVisible(true);
-        Text t = new Text("You are now in edit mode.");
-        mainText.getChildren().clear();
-        mainText.getChildren().add(t);
+        dayTotalB.setVisible(true);
+        replaceMainTextMessage("You are now in edit mode.");
     }
     
     /*
@@ -229,6 +321,7 @@ public class MainController implements Initializable {
         addMealB.setVisible(false);
         editMealB.setVisible(false);
         deleteMealB.setVisible(false);
+        dayTotalB.setVisible(false);
     }
     
     //Loads the food on the right based on which list the user specifies
@@ -254,9 +347,11 @@ public class MainController implements Initializable {
     
     public void addFood(){
         if(addToMealMode){
-            
-            mealContentView.getItems();
-        }
+            String s = foodsList.getSelectionModel().getSelectedItem();
+            mealContents.add(s);
+            ObservableList<String> mealContentsOL = FXCollections.observableArrayList(mealContents);
+            foodContentsView.getItems().clear();
+            foodContentsView.getItems().addAll(mealContentsOL);
+         }
     }
-    
 }

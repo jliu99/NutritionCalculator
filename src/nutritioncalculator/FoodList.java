@@ -24,7 +24,7 @@ public class FoodList {
     t.add(new FoodItem("Tomato", "1 medium whole (2 3/5\" diameter, 123g)", new NutritionFacts(22, 0.2, 0, 0, 0, 6, 292, 4.8, 1.5, 3.3, 1.1)));
     t.add(new FoodItem("Spaghetti Pasta", "1 cup (140g)", new NutritionFacts(221, 1.3, 0.2, 0, 0, 1, 62, 43, 2.5, 0.7, 8)));
     t.add(new FoodItem("Meatballs", "1 cup (144g)", new NutritionFacts(284, 13, 2.1, 0, 0, 792, 259, 12, 7, 1.8, 30)));
-    t.add(new FoodItem("Prego Traditional Pasta Sauce", "1 cup (272 g)", new NutritionFacts(140., 3., 0., 0., 4., 960., 810., 26.2, 6., 20.2, 4.)));
+    t.add(new FoodItem("Prego Traditional Pasta Sauce", "1 cup (272 g)", new NutritionFacts(140, 3, 0, 0, 4, 960, 810, 26.2, 6, 20.2, 4)));
     t.add(new FoodItem("Hot Dog Sausage", "1 hot dog (52g)", new NutritionFacts(151, 13, 4, 0, 40, 567, 79, 2.2, 0, 1, 5)));
     }
     
@@ -70,6 +70,4 @@ public class FoodList {
         
     }
     
-    public static void createNewRecipe(){
-            }
 }

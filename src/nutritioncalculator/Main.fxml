@@ -40,13 +40,16 @@
          <center>
             <AnchorPane prefHeight="600.0" prefWidth="500.0" BorderPane.alignment="CENTER">
                <children>
-                  <ListView fx:id="foodView" layoutY="321.0" prefHeight="77.0" prefWidth="475.0" visible="false" />
-                  <Button fx:id="loadButton" layoutX="182.0" layoutY="321.0" mnemonicParsing="false" onAction="#loadUser" prefHeight="31.0" prefWidth="137.0" text="Load" AnchorPane.leftAnchor="182.0" AnchorPane.rightAnchor="181.0" />
-                  <TextFlow fx:id="mainText" prefHeight="321.0" prefWidth="500.0" style="-fx-padding: 10px;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <Button fx:id="addMealB" layoutX="70.0" layoutY="516.0" mnemonicParsing="false" onAction="#newMeal" prefHeight="38.0" prefWidth="107.0" text="Add Meal" AnchorPane.bottomAnchor="10.0" />
-                  <ListView fx:id="mealList" layoutX="1.0" layoutY="396.0" prefHeight="100.0" prefWidth="500.0" AnchorPane.bottomAnchor="72.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" />
-                  <Button fx:id="editMealB" layoutX="185.0" layoutY="516.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="107.0" text="Edit Meal" AnchorPane.bottomAnchor="10.0" />
-                  <Button fx:id="deleteMealB" layoutX="299.0" layoutY="516.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="107.0" text="Delete Meal" AnchorPane.bottomAnchor="10.0" />
+                  <TextFlow fx:id="mainText" prefHeight="568.0" prefWidth="475.0" style="-fx-padding: 10px;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Button fx:id="loadButton" layoutX="180.0" layoutY="300.0" mnemonicParsing="false" onAction="#loadUser" prefHeight="35.0" prefWidth="125.0" text="Load" AnchorPane.bottomAnchor="233.0" />
+                  <ListView fx:id="foodContentsView" layoutY="321.0" prefHeight="150.0" prefWidth="475.0" visible="false" AnchorPane.bottomAnchor="72.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                  <Button fx:id="addMealB" layoutX="3.0" layoutY="520.0" mnemonicParsing="false" onAction="#newMealMode" prefHeight="38.0" prefWidth="107.0" text="Add Meal" visible="false" AnchorPane.bottomAnchor="10.0" />
+                  <ListView fx:id="mealList" layoutY="321.0" prefHeight="150.0" prefWidth="475.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                  <Button fx:id="editMealB" layoutX="118.0" layoutY="520.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="107.0" text="Edit Meal" visible="false" AnchorPane.bottomAnchor="10.0" />
+                  <Button fx:id="deleteMealB" layoutX="233.0" layoutY="520.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="107.0" text="Delete Meal" visible="false" AnchorPane.bottomAnchor="10.0" />
+                  <Button fx:id="okB" layoutX="140.0" layoutY="518.0" mnemonicParsing="false" onAction="#confirmMeal" prefHeight="42.0" prefWidth="74.0" text="Okay" visible="false" />
+                  <Button fx:id="cancelB" layoutX="255.0" layoutY="518.0" mnemonicParsing="false" onAction="#cancelMeal" prefHeight="42.0" prefWidth="74.0" text="Cancel" visible="false" />
+                  <Button fx:id="dayTotalB" layoutX="349.0" layoutY="518.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="107.0" text="Day Total" visible="false" AnchorPane.bottomAnchor="10.0" />
                </children>
             </AnchorPane>
          </center>
@@ -60,7 +63,7 @@
          <right>
             <AnchorPane maxWidth="200.0" minWidth="175.0" prefHeight="568.0" prefWidth="175.0" BorderPane.alignment="CENTER">
                <children>
-                  <ListView fx:id="foodsList" prefHeight="537.0" prefWidth="175.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <ListView fx:id="foodsList" onMouseClicked="#addFood" prefHeight="537.0" prefWidth="175.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <Button fx:id="toggleFoodB" layoutY="527.0" mnemonicParsing="false" onAction="#toggleFoodList" prefHeight="30.0" prefWidth="175.0" text="Toggle" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                </children>
             </AnchorPane>
