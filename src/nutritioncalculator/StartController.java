@@ -5,6 +5,7 @@
  */
 package nutritioncalculator;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -46,7 +47,7 @@ public class StartController implements Initializable {
     private MenuItem about;
     
     @FXML
-    private Button NewLog, LoadLog, go;
+    private Button NewLog, LoadLog, go, backB;
    
     @FXML
     private TextField tf;
@@ -80,13 +81,14 @@ public class StartController implements Initializable {
      LoadLog.setVisible(false);
      go.setVisible(true);
      tf.setVisible(true);
+     backB.setVisible(true);
      tflow.getChildren().clear();
      tflow.getChildren().add(t);  
     }
     
     public void promptLoadLog(){
      newLog = false;
-     Text t1 = new Text("Enter your name EXACTLY as it appears in your log, then press Go to begin.");
+     Text t1 = new Text("Enter your name EXACTLY as it appears in your log, then press Go to begin. If you enter your name incorrectly, nothing will happen, so that your spelling matches that of the file name before retrying.");
      prompt(t1);
     }
     
@@ -95,13 +97,21 @@ public class StartController implements Initializable {
         name.toLowerCase();
         if(newLog){
             NutritionCalculator.currentLog = new UserLog(name);
+            switchToMain();
         } else{
-            NutritionCalculator.loadUserLog(name);
+            if(NutritionCalculator.loadUserLog(name)){
+                switchToMain();
+            }
         }
+        
+    }
+    
+    public void switchToMain(){
         NewLog.setVisible(true);
         LoadLog.setVisible(true);
         go.setVisible(false);
         tf.setVisible(false);
+        backB.setVisible(false);
         try {
             Main.switchStage("main");
         } catch (Exception ex) {
@@ -109,6 +119,19 @@ public class StartController implements Initializable {
             Logger.getLogger(StartController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+    
+    public void goBack(){
+        NewLog.setVisible(true);
+        LoadLog.setVisible(true);
+        go.setVisible(false);
+        tf.setVisible(false);
+        backB.setVisible(false);
+        Text t1 = new Text("Welcome to the Nutrition Calculator! \n \n"), 
+             t2 = new Text("Are you a new user? Then create a new log with the button below! Otherwise, if you're a returning user, click the Load Log button to get started.");
+        tflow.getChildren().clear();
+        tflow.getChildren().add(t1);
+        tflow.getChildren().add(t2);
     }
     
     public void displayAbout(){

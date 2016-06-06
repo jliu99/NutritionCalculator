@@ -61,11 +61,29 @@ public class MealEntry implements java.io.Serializable{
         
         for(int i = 0; i < contents.size(); i++){
             String food = contents.get(i);
-            NutritionFacts nf;
-            if(t.contains(food)){
-                nf = t.get(i).getNutritionFacts();
-            } else{
-                nf = r.get(i).getNutritionFacts(t);
+            FoodItem f = null;
+            Recipe rec = null;
+            NutritionFacts nf = null;
+            boolean foodFound = false;
+            for(int j = 0; j < t.size(); j++){
+                if(t.get(j).getName().equals(food)){
+                    f = t.get(j);
+                    nf = f.getNutritionFacts();
+                    foodFound = true;
+                    break;
+                } else {
+                    nf = new NutritionFacts(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                }
+            }
+            if(!foodFound){
+                for(int j = 0; j < r.size(); j++){
+                    if(r.get(j).getName().equals(food)){
+                    rec = r.get(j);
+                    nf = rec.getNutritionFacts(t);
+                    foodFound = true;
+                    break;
+                    }
+                }
             }
             totalCalories += nf.getCalories();
             totalTotalFat += nf.getTotalFat();
@@ -78,18 +96,19 @@ public class MealEntry implements java.io.Serializable{
             totalDietaryFiber += nf.getDietaryFiber();
             totalSugars += nf.getSugars();
             totalProtein += nf.getProtein();
+            
+        
         }
         return new NutritionFacts(totalCalories, totalTotalFat, totalSaturatedFat, totalTransFat, totalCholesterol, totalSodium, totalPotassium, totalTotalCarb, totalDietaryFiber, totalSugars, totalProtein);
     }
-    
- /*
+
     @Override
     public String toString(){
-        String str = "";
-        for(NutritionFacts s : contents){
-            str += s + ", ";
+        String str = contents.get(0);
+        for(int i = 1; i < contents.size(); i++){
+            str += ", " + contents.get(i);
         }
-        return "Meal: " + str;
+        NutritionFacts nf = totalNutritionalValue(NutritionCalculator.foodList, NutritionCalculator.customRecipes);
+        return "This meal contains the following ingredients: \n \n" + str + "\n\nAltogether, this meal has the folloiwing nutritional value.\n \n" + nf.toString();
     }
- */
 }

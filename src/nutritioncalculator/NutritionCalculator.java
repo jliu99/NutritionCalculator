@@ -87,20 +87,23 @@ public class NutritionCalculator implements java.io.Serializable {
            }
     }
     
-    public static void loadUserLog(String s){
+    public static boolean loadUserLog(String s){
         try{
             String filename = s.toLowerCase();
             FileInputStream fileIn = new FileInputStream("savedfiles/" + filename + ".ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            currentLog = (UserLog) in.readObject();
+            currentLog = (UserLog)in.readObject();
             in.close();
             fileIn.close();
             System.out.println("Welcome back, " + s + "!");
+            return true;
         }catch(FileNotFoundException e){
             System.out.println("User log does not exist!");
+            return false;
         }catch(Exception e){
             e.printStackTrace();
             System.out.println("Something went wrong with loading the file.");
+            return false;
         }
     }
     

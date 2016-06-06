@@ -31,9 +31,10 @@
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="NewLog" layoutX="251.0" layoutY="203.0" mnemonicParsing="false" onAction="#promptNewLog" prefHeight="35.0" prefWidth="110.0" text="New Log" />
+                  <Button fx:id="NewLog" layoutX="251.0" layoutY="203.0" mnemonicParsing="false" onAction="#promptNewLog" prefHeight="35.0" prefWidth="110.0" text="New Log" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="250.0" />
                   <TextField fx:id="tf" layoutX="169.0" layoutY="189.0" visible="false" />
-                  <Button fx:id="LoadLog" layoutX="251.0" layoutY="249.0" mnemonicParsing="false" onAction="#promptLoadLog" prefHeight="31.0" prefWidth="110.0" text="Load Log" />
+                  <Button fx:id="backB" layoutX="273.0" layoutY="238.0" mnemonicParsing="false" onAction="#goBack" prefHeight="31.0" prefWidth="65.0" text="Back" visible="false" AnchorPane.leftAnchor="273.0" AnchorPane.rightAnchor="273.0" />
+                  <Button fx:id="LoadLog" layoutX="251.0" layoutY="249.0" mnemonicParsing="false" onAction="#promptLoadLog" prefHeight="31.0" prefWidth="110.0" text="Load Log" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="250.0" />
                   <TextFlow fx:id="tflow" disable="true" layoutX="162.0" layoutY="29.0" prefHeight="146.0" prefWidth="288.0" />
                   <Button fx:id="go" layoutX="380.0" layoutY="187.0" mnemonicParsing="false" onAction="#process" text="Go" visible="false" />
                </children>

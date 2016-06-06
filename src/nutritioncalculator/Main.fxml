@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nutritioncalculator.MainController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nutritioncalculator.MainController">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -44,13 +44,13 @@
                   <Button fx:id="loadButton" layoutX="180.0" layoutY="300.0" mnemonicParsing="false" onAction="#loadUser" prefHeight="35.0" prefWidth="125.0" text="Load" AnchorPane.bottomAnchor="233.0" />
                   <ListView fx:id="foodContentsView" layoutY="321.0" prefHeight="150.0" prefWidth="475.0" visible="false" AnchorPane.bottomAnchor="72.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                   <Button fx:id="addMealB" layoutX="3.0" layoutY="520.0" mnemonicParsing="false" onAction="#newMealMode" prefHeight="38.0" prefWidth="107.0" text="Add Meal" visible="false" AnchorPane.bottomAnchor="10.0" />
-                  <ListView fx:id="mealList" layoutY="321.0" prefHeight="150.0" prefWidth="475.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                  <ListView fx:id="mealList" layoutY="321.0" onMouseClicked="#selectMeal" prefHeight="150.0" prefWidth="475.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                   <Button fx:id="editMealB" layoutX="118.0" layoutY="520.0" mnemonicParsing="false" onAction="#editMealMode" prefHeight="38.0" prefWidth="107.0" text="Edit Meal" visible="false" AnchorPane.bottomAnchor="10.0" />
                   <Button fx:id="deleteMealB" layoutX="233.0" layoutY="520.0" mnemonicParsing="false" onAction="#deleteMeal" prefHeight="38.0" prefWidth="107.0" text="Delete Meal" visible="false" AnchorPane.bottomAnchor="10.0" />
                   <Button fx:id="okB" layoutX="100.0" layoutY="518.0" mnemonicParsing="false" onAction="#confirmMeal" prefHeight="42.0" prefWidth="74.0" text="Okay" visible="false" AnchorPane.bottomAnchor="10.0" />
                   <Button fx:id="removeB" layoutX="200.0" layoutY="516.0" mnemonicParsing="false" onAction="#removeFood" prefHeight="42.0" prefWidth="74.0" text="Remove" visible="false" AnchorPane.bottomAnchor="8.0" />
                   <Button fx:id="cancelB" layoutX="295.0" layoutY="518.0" mnemonicParsing="false" onAction="#cancelMeal" prefHeight="42.0" prefWidth="74.0" text="Cancel" visible="false" AnchorPane.bottomAnchor="10.0" />
-                  <Button fx:id="dayTotalB" layoutX="349.0" layoutY="518.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="107.0" text="Day Total" visible="false" AnchorPane.bottomAnchor="10.0" />
+                  <Button fx:id="dayTotalB" layoutX="349.0" layoutY="518.0" mnemonicParsing="false" onAction="#calculateDayTotal" prefHeight="38.0" prefWidth="107.0" text="Day Total" visible="false" AnchorPane.bottomAnchor="10.0" />
                </children>
             </AnchorPane>
          </center>

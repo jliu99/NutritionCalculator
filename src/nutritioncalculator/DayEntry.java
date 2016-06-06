@@ -68,6 +68,22 @@ public class DayEntry implements java.io.Serializable {
         return new NutritionFacts(totalCalories, totalTotalFat, totalSaturatedFat, totalTransFat, totalCholesterol, totalSodium, totalPotassium, totalTotalCarb, totalDietaryFiber, totalSugars, totalProtein);
     }
     
+    public NutritionFacts averageNutritionalValue(ArrayList<FoodItem> t, ArrayList<Recipe> r){
+        NutritionFacts nf = totalNutritionalValue(t, r);
+        nf.setCalories(nf.getCalories() / meals.size());
+        nf.setTotalFat(nf.getTotalFat() / meals.size());
+        nf.setSaturatedFat(nf.getSaturatedFat() / meals.size());
+        nf.setTransFat(nf.getTransFat() / meals.size());
+        nf.setCholesterol(nf.getCholesterol() / meals.size());
+        nf.setSodium(nf.getSodium() / meals.size());
+        nf.setPotassium(nf.getPotassium() / meals.size());
+        nf.setTotalCarb(nf.getTotalCarb() / meals.size());
+        nf.setDietaryFiber(nf.getDietaryFiber() / meals.size());
+        nf.setSugars(nf.getSugars() / meals.size());
+        nf.setProtein(nf.getProtein() / meals.size());
+        return nf;
+    }
+    
     @Override
     public String toString(){
         String str = "";

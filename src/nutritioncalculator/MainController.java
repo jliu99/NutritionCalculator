@@ -163,11 +163,12 @@ public class MainController implements Initializable {
 
             Optional<ButtonType> result = dialogBox.showAndWait();
             if (result.get() == ok){
-                loadButton.setVisible(false);
-            mealList.setVisible(false);
-            toggleFoodB.setVisible(false);
-            addDayB.setVisible(false);
-            deleteDayB.setVisible(false);
+                loadButton.setVisible(true);
+                mealList.setVisible(false);
+                foodContentsView.setVisible(false);
+                toggleFoodB.setVisible(false);
+                addDayB.setVisible(false);
+                deleteDayB.setVisible(false);
             toggleViewMode();
             replaceMainTextMessage("Please press the button below to load your data into the interface.");
                 try {
@@ -220,7 +221,7 @@ public class MainController implements Initializable {
             ArrayList<MealEntry> meals = currentDay.getMealEntryList();
             if(!meals.isEmpty()){
                replaceMainTextMessage("Your meal entries for " + date + " are shown below. Select an option to view its details.");
-               refreshMealList(meals); 
+               refreshMealList(meals);
             } else {
                 replaceMainTextMessage("You have no meal entries for " + date + ". To add a meal, go into Edit Mode and use the Add Meal button, which will appear below.");
             }
@@ -311,10 +312,11 @@ public class MainController implements Initializable {
     }
     
     public void editMealMode(){
+        mealList.setVisible(true);
         if(mealList.getSelectionModel().getSelectedItem()==null){
             replaceMainTextMessage("You didn't select a meal to edit. Select a meal, then press the Edit Meal button again.");
         } else{
-            Integer index = Integer.parseInt(mealList.getSelectionModel().getSelectedItem());
+            Integer index = Integer.parseInt(mealList.getSelectionModel().getSelectedItem().substring(5)) - 1;
             currentMeal = currentDay.getMealEntry(index);
             mealContents = currentMeal.getContents();
             foodContentsView.setVisible(true);
@@ -329,7 +331,17 @@ public class MainController implements Initializable {
         }
     }
     
+    public void selectMeal(){
+        if(mealList.getSelectionModel().getSelectedItem()!=null){
+            String i = mealList.getSelectionModel().getSelectedItem().substring(5);
+            Integer index = Integer.parseInt(i) - 1;
+            currentMeal = currentDay.getMealEntryList().get(index);
+            replaceMainTextMessage(currentMeal.toString());
+        }
+    }
+    
     public void deleteMeal(){
+        mealList.setVisible(true);
         if(mealList.getSelectionModel().getSelectedItem()==null){
             replaceMainTextMessage("You didn't select a meal to delete. Select a meal, then press the Delete Meal button again.");
         } else{
@@ -343,8 +355,10 @@ public class MainController implements Initializable {
 
             Optional<ButtonType> result = dialogBox.showAndWait();
             if (result.get() == ok){
-                Integer index = Integer.parseInt(mealList.getSelectionModel().getSelectedItem());
+                String s = mealList.getSelectionModel().getSelectedItem().substring(5);
+                Integer index = Integer.parseInt(s) - 1;
                 currentDay.removeMealEntry(index);
+                refreshMealList(currentDay.getMealEntryList());
             } else {
                 // User chose CANCEL or closed the dialog; returns to interface.
             }  
@@ -400,6 +414,19 @@ public class MainController implements Initializable {
         deleteMealB.setVisible(true);
         dayTotalB.setVisible(true);
         replaceMainTextMessage("You are now in edit mode.");
+    }
+    
+    public void calculateDayTotal(){
+        if(currentDay == null){
+            replaceMainTextMessage("You have not selected a day yet! Select a day, then press Day Total again to return the total nutrient consumption for that day.");
+        } else {
+            String str = currentDay.totalNutritionalValue(NutritionCalculator.foodList, NutritionCalculator.customRecipes).toString();
+            String s = currentDay.averageNutritionalValue(NutritionCalculator.foodList, NutritionCalculator.customRecipes).toString();
+            int i = currentDay.getMealEntryList().size();
+            replaceMainTextMessage("On the day " + currentDay.getDate() + ", you have eaten a total of "+ i + " meals. Your total nutritional consumption for the day is as follows.\n \n" + str + "\n \nThis means that your average nutritional consumption per meal is as follows.\n \n" + s);
+            mealList.setVisible(false);
+            foodContentsView.setVisible(false);
+        }
     }
     
     /*
