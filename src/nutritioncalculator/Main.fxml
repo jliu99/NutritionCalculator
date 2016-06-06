@@ -45,10 +45,11 @@
                   <ListView fx:id="foodContentsView" layoutY="321.0" prefHeight="150.0" prefWidth="475.0" visible="false" AnchorPane.bottomAnchor="72.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                   <Button fx:id="addMealB" layoutX="3.0" layoutY="520.0" mnemonicParsing="false" onAction="#newMealMode" prefHeight="38.0" prefWidth="107.0" text="Add Meal" visible="false" AnchorPane.bottomAnchor="10.0" />
                   <ListView fx:id="mealList" layoutY="321.0" prefHeight="150.0" prefWidth="475.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                  <Button fx:id="editMealB" layoutX="118.0" layoutY="520.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="107.0" text="Edit Meal" visible="false" AnchorPane.bottomAnchor="10.0" />
-                  <Button fx:id="deleteMealB" layoutX="233.0" layoutY="520.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="107.0" text="Delete Meal" visible="false" AnchorPane.bottomAnchor="10.0" />
-                  <Button fx:id="okB" layoutX="140.0" layoutY="518.0" mnemonicParsing="false" onAction="#confirmMeal" prefHeight="42.0" prefWidth="74.0" text="Okay" visible="false" />
-                  <Button fx:id="cancelB" layoutX="255.0" layoutY="518.0" mnemonicParsing="false" onAction="#cancelMeal" prefHeight="42.0" prefWidth="74.0" text="Cancel" visible="false" />
+                  <Button fx:id="editMealB" layoutX="118.0" layoutY="520.0" mnemonicParsing="false" onAction="#editMealMode" prefHeight="38.0" prefWidth="107.0" text="Edit Meal" visible="false" AnchorPane.bottomAnchor="10.0" />
+                  <Button fx:id="deleteMealB" layoutX="233.0" layoutY="520.0" mnemonicParsing="false" onAction="#deleteMeal" prefHeight="38.0" prefWidth="107.0" text="Delete Meal" visible="false" AnchorPane.bottomAnchor="10.0" />
+                  <Button fx:id="okB" layoutX="100.0" layoutY="518.0" mnemonicParsing="false" onAction="#confirmMeal" prefHeight="42.0" prefWidth="74.0" text="Okay" visible="false" AnchorPane.bottomAnchor="10.0" />
+                  <Button fx:id="removeB" layoutX="200.0" layoutY="516.0" mnemonicParsing="false" onAction="#removeFood" prefHeight="42.0" prefWidth="74.0" text="Remove" visible="false" AnchorPane.bottomAnchor="8.0" />
+                  <Button fx:id="cancelB" layoutX="295.0" layoutY="518.0" mnemonicParsing="false" onAction="#cancelMeal" prefHeight="42.0" prefWidth="74.0" text="Cancel" visible="false" AnchorPane.bottomAnchor="10.0" />
                   <Button fx:id="dayTotalB" layoutX="349.0" layoutY="518.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="107.0" text="Day Total" visible="false" AnchorPane.bottomAnchor="10.0" />
                </children>
             </AnchorPane>
@@ -56,7 +57,9 @@
          <left>
             <AnchorPane maxWidth="150.0" minWidth="100.0" prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER">
                <children>
-                  <ListView fx:id="days" layoutX="-1.0" layoutY="-1.0" onMouseClicked="#selectDay" prefHeight="570.0" prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <ListView fx:id="days" layoutX="-1.0" layoutY="-1.0" onMouseClicked="#selectDay" prefHeight="450.0" prefWidth="150.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Button fx:id="addDayB" layoutX="10.0" layoutY="537.0" mnemonicParsing="false" onAction="#addDay" prefHeight="30.0" prefWidth="140.0" text="Add Day" visible="false" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                  <Button fx:id="deleteDayB" layoutX="20.0" layoutY="547.0" mnemonicParsing="false" onAction="#removeDay" prefHeight="30.0" prefWidth="140.0" text="Remove Day" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                </children>
             </AnchorPane>
          </left>

@@ -11,6 +11,7 @@ public class MealEntry implements java.io.Serializable{
 
     private ArrayList<String> contents;
     
+    
     /**
      *
      * @param foods
@@ -28,10 +29,24 @@ public class MealEntry implements java.io.Serializable{
      * @param name
      * @return
      */
+    
+    public ArrayList<String> getContents(){
+        return contents;
+    }
+    
+    public void setContents(ArrayList<String> c){
+        contents = c;
+    }
+    
     public void addFood(String name){
        contents.add(name);
     }
-    public NutritionFacts totalNutritionalValue(ArrayList<FoodItem> t){
+    
+    public void removeFood(String name){
+        contents.remove(name);
+    }
+    
+    public NutritionFacts totalNutritionalValue(ArrayList<FoodItem> t, ArrayList<Recipe> r){
         double totalCalories = 0;
         double totalTotalFat = 0;
         double totalSaturatedFat = 0;
@@ -46,7 +61,12 @@ public class MealEntry implements java.io.Serializable{
         
         for(int i = 0; i < contents.size(); i++){
             String food = contents.get(i);
-            NutritionFacts nf = t.get(i).getNutritionFacts();
+            NutritionFacts nf;
+            if(t.contains(food)){
+                nf = t.get(i).getNutritionFacts();
+            } else{
+                nf = r.get(i).getNutritionFacts(t);
+            }
             totalCalories += nf.getCalories();
             totalTotalFat += nf.getTotalFat();
             totalSaturatedFat += nf.getSaturatedFat();

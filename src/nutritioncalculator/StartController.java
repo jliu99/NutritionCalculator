@@ -77,16 +77,11 @@ public class StartController implements Initializable {
     
     public void prompt(Text t){
      NewLog.setVisible(false);
-     NewLog.setManaged(false);
      LoadLog.setVisible(false);
-     LoadLog.setManaged(false);
      go.setVisible(true);
      tf.setVisible(true);
-     go.setManaged(true);
-     tf.setManaged(true);
      tflow.getChildren().clear();
-     tflow.getChildren().add(t);
-     
+     tflow.getChildren().add(t);  
     }
     
     public void promptLoadLog(){
@@ -103,6 +98,10 @@ public class StartController implements Initializable {
         } else{
             NutritionCalculator.loadUserLog(name);
         }
+        NewLog.setVisible(true);
+        LoadLog.setVisible(true);
+        go.setVisible(false);
+        tf.setVisible(false);
         try {
             Main.switchStage();
         } catch (Exception ex) {
@@ -118,11 +117,6 @@ public class StartController implements Initializable {
         dialogBox.setHeaderText(null);
         dialogBox.setContentText("");
         dialogBox.showAndWait();
-    }
- 
-    public void displayHowTo(){
-        Alert dialogBox = new Alert(AlertType.INFORMATION);
-        
     }
     
 }

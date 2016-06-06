@@ -37,4 +37,29 @@ public class Recipe {
         ingredients = t;
     }
     
+    public NutritionFacts getNutritionFacts(ArrayList<FoodItem> f){
+        double totalCalories = 0;
+        double totalTotalFat = 0;
+        double totalSaturatedFat = 0;
+        double totalTransFat = 0;
+        double totalCholesterol = 0;
+        double totalSodium = 0;
+        double totalPotassium = 0;
+        double totalTotalCarb = 0;
+        double totalDietaryFiber = 0;
+        double totalProtein = 0;
+        double totalSugars = 0;
+        
+        Set<FoodItem> keys = ingredients.keySet();
+        ArrayList<String> food = new ArrayList<String>();
+        for(FoodItem fi : keys){
+            food.add(fi.getName());
+        }
+        Collection values = ingredients.values();
+        for(String s : food){
+            
+        }
+        return new NutritionFacts(totalCalories, totalTotalFat, totalSaturatedFat, totalTransFat, totalCholesterol, totalSodium, totalPotassium, totalTotalCarb, totalDietaryFiber, totalSugars, totalProtein);
+    }
+    
 }

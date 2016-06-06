@@ -92,7 +92,15 @@ public class UserLog implements java.io.Serializable {
         }
     }
     
-    public NutritionFacts totalNutritionalValue(ArrayList<FoodItem> t){
+    public void deleteDay(DayEntry d){
+        for (int i = 0; i < days.size(); i++) {
+            if(d.equals(days.get(i))) {
+                days.remove(days.get(i));
+            }
+        }
+    }
+    
+    public NutritionFacts totalNutritionalValue(ArrayList<FoodItem> t, ArrayList<Recipe> r){
         double totalCalories = 0;
         double totalTotalFat = 0;
         double totalSaturatedFat = 0;
@@ -105,7 +113,7 @@ public class UserLog implements java.io.Serializable {
         double totalProtein = 0;
         double totalSugars = 0;
         for(DayEntry d : days){
-            NutritionFacts nf = d.totalNutritionalValue(t);
+            NutritionFacts nf = d.totalNutritionalValue(t, r);
             totalCalories += nf.getCalories();
             totalTotalFat += nf.getTotalFat();
             totalSaturatedFat += nf.getSaturatedFat();
@@ -121,8 +129,8 @@ public class UserLog implements java.io.Serializable {
         return new NutritionFacts(totalCalories, totalTotalFat, totalSaturatedFat, totalTransFat, totalCholesterol, totalSodium, totalPotassium, totalTotalCarb, totalDietaryFiber, totalSugars, totalProtein);
     }
     
-    public NutritionFacts averageNutritionalValue(ArrayList<FoodItem> t){
-        NutritionFacts nf = totalNutritionalValue(t);
+    public NutritionFacts averageNutritionalValue(ArrayList<FoodItem> t, ArrayList<Recipe> r){
+        NutritionFacts nf = totalNutritionalValue(t, r);
         nf.setCalories(nf.getCalories() / days.size());
         nf.setTotalFat(nf.getTotalFat() / days.size());
         nf.setSaturatedFat(nf.getSaturatedFat() / days.size());

@@ -35,7 +35,11 @@ public class DayEntry implements java.io.Serializable {
         return meals;
     }
     
-    public NutritionFacts totalNutritionalValue(ArrayList<FoodItem> t){
+    public MealEntry removeMealEntry(int i){
+        return meals.remove(i);
+    }
+    
+    public NutritionFacts totalNutritionalValue(ArrayList<FoodItem> t, ArrayList<Recipe> r){
         double totalCalories = 0;
         double totalTotalFat = 0;
         double totalSaturatedFat = 0;
@@ -48,7 +52,7 @@ public class DayEntry implements java.io.Serializable {
         double totalProtein = 0;
         double totalSugars = 0;
         for(MealEntry m : meals){
-            NutritionFacts nf = m.totalNutritionalValue(t);
+            NutritionFacts nf = m.totalNutritionalValue(t, r);
             totalCalories += nf.getCalories();
             totalTotalFat += nf.getTotalFat();
             totalSaturatedFat += nf.getSaturatedFat();
