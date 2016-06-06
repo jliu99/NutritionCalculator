@@ -10,10 +10,17 @@ import java.util.*;
 
 public class Recipe {
     private String name;
-    private ArrayList<String> ingredients;
-    public Recipe(String s, ArrayList<String> list){
+    private TreeMap<FoodItem, Double> ingredients;
+   
+    /*public Recipe(String s, ArrayList<String> list){
         name=s;
         ingredients=list;
-}
+    }
+    */
+    public String getName(){
+        return name;
+    }
+    
+    
     
 }

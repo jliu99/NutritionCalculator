@@ -15,6 +15,10 @@ public class MealEntry implements java.io.Serializable{
      *
      * @param foods
      */
+    public MealEntry(){
+        contents = new ArrayList<String>();
+    }
+    
     public MealEntry(ArrayList<String> foods){
         contents = foods;
     }
@@ -27,22 +31,22 @@ public class MealEntry implements java.io.Serializable{
     public void addFood(String name){
        contents.add(name);
     }
-    public NutritionFacts totalNutritionalValue(TreeMap t){
-        int totalCalories = 0;
-        int totalTotalFat = 0;
-        int totalSaturatedFat = 0;
-        int totalTransFat = 0;
-        int totalCholesterol = 0;
-        int totalSodium = 0;
-        int totalPotassium = 0;
-        int totalTotalCarb = 0;
-        int totalDietaryFiber = 0;
-        int totalProtein = 0;
-        int totalSugars = 0;
+    public NutritionFacts totalNutritionalValue(ArrayList<FoodItem> t){
+        double totalCalories = 0;
+        double totalTotalFat = 0;
+        double totalSaturatedFat = 0;
+        double totalTransFat = 0;
+        double totalCholesterol = 0;
+        double totalSodium = 0;
+        double totalPotassium = 0;
+        double totalTotalCarb = 0;
+        double totalDietaryFiber = 0;
+        double totalProtein = 0;
+        double totalSugars = 0;
         
         for(int i = 0; i < contents.size(); i++){
             String food = contents.get(i);
-            NutritionFacts nf = (NutritionFacts)t.get(food);
+            NutritionFacts nf = t.get(i).getNutritionFacts();
             totalCalories += nf.getCalories();
             totalTotalFat += nf.getTotalFat();
             totalSaturatedFat += nf.getSaturatedFat();

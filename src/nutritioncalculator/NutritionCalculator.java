@@ -27,19 +27,20 @@ public class NutritionCalculator implements java.io.Serializable {
      * @param args the command line arguments
      */
     
-    public static TreeMap<String, NutritionFacts> foodList;
+    public static ArrayList<FoodItem> foodList;
     public static ArrayList<Recipe> customRecipes;
     public static UserLog currentLog;
     
     public static void loadFoodList(){
+        foodList = new ArrayList<FoodItem>();
         try{
             FileInputStream fileIn = new FileInputStream("savedfiles/foodlist.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            foodList = (TreeMap<String, NutritionFacts>) in.readObject();
+            foodList = (ArrayList<FoodItem>) in.readObject();
             in.close();
             fileIn.close();
         }catch(FileNotFoundException e){
-            DefaultFoodList.loadDefaultFoodList(foodList);
+            FoodList.loadDefaultFoodList(foodList);
             saveFoodList();
         }catch(Exception e){
             System.out.println("Something went wrong with loading the file: foodlist.ser");
@@ -118,64 +119,4 @@ public class NutritionCalculator implements java.io.Serializable {
            }
     }
     
-   /* public static void main(String[] args) {
-        foodList = new TreeMap<String, NutritionFacts>();
-        loadFoodList();
-        currentLog = null;
-        Scanner input = new Scanner(System.in);
-        String command = "";
-        System.out.println("Welcome! This is a WIP Nutrition Calculator.");
-        System.out.println("Type: create, load, quit");
-        while(!command.equals("quit")){
-        command = input.nextLine();
-        command = command.toLowerCase();
-            if(command.equals("create")){
-                
-            } else if(command.equals("load")){
-                System.out.println("Type your name below as you entered it before. Don't add extra spaces or characters.");
-                String str = input.nextLine();
-                loadUserLog(str);
-            } else if(command.equals("save")){
-                System.out.println("Saving...");
-                saveUserLog();
-            }else if(command.equals("new meal")){
-                if(currentLog == null){
-                    System.out.println("You haven't created a new log yet. Create a new log, then you can add meals.");
-                } else {
-                    System.out.println("Add items from this list that you ate for this meal by typing the names of them. The program will keep adding until you type 'end meal'.");
-                    System.out.println("");
-                    Set<String> keys = foodList.keySet();
-                    String str = "";
-                    for(String s : keys){
-                        str += s + ", ";
-                    }
-                    System.out.println(str);
-                    str = input.nextLine();
-                    ArrayList<String> mealContents = new ArrayList<String>();
-                    while(!str.equals("end meal")){
-                        if(foodList.containsKey(str)){
-                             mealContents.add(str);
-                        } else{
-                            System.out.println("Sorry, I do not recognize that food item: " + str + ". Try again.");
-                        }
-                        str = input.nextLine();
-                    }
-                    currentLog.addMeal(mealContents);
-                    System.out.println("Meal added. You may view all the meals for this day by typing 'view log' and calculate the total nutritional value by typing 'get total'.");
-                }
-            } else if(command.equals("view log")){
-                for(DayEntry d : currentLog.getDayEntryList()){
-                    System.out.println(d.toString());
-                }
-            } else if(command.equals("get total")){
-                for(DayEntry d: currentLog.getDayEntryList()){
-                    System.out.println("For this day, the nutritional intake totals to the following.");
-                    NutritionFacts nf = d.totalNutritionalValue(foodList);
-                    System.out.println(nf.toString());
-                }
-            } else if (!command.equals("quit")){
-                System.out.println("Sorry, I did not understand the command: " + command);
-            }
-        }
-    }*/
 }

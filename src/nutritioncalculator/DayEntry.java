@@ -19,22 +19,34 @@ public class DayEntry implements java.io.Serializable {
         return date;
     }
     
+    public void addMeal(){
+        meals.add(new MealEntry());
+    }
+    
     public void addMeal(ArrayList<String> meal){
         meals.add(new MealEntry(meal));
     }
     
-    public NutritionFacts totalNutritionalValue(TreeMap t){
-        int totalCalories = 0;
-        int totalTotalFat = 0;
-        int totalSaturatedFat = 0;
-        int totalTransFat = 0;
-        int totalCholesterol = 0;
-        int totalSodium = 0;
-        int totalPotassium = 0;
-        int totalTotalCarb = 0;
-        int totalDietaryFiber = 0;
-        int totalProtein = 0;
-        int totalSugars = 0;
+    public MealEntry getMealEntry(int i){
+        return meals.get(i);
+    }
+    
+    public ArrayList<MealEntry> getMealEntryList(){
+        return meals;
+    }
+    
+    public NutritionFacts totalNutritionalValue(ArrayList<FoodItem> t){
+        double totalCalories = 0;
+        double totalTotalFat = 0;
+        double totalSaturatedFat = 0;
+        double totalTransFat = 0;
+        double totalCholesterol = 0;
+        double totalSodium = 0;
+        double totalPotassium = 0;
+        double totalTotalCarb = 0;
+        double totalDietaryFiber = 0;
+        double totalProtein = 0;
+        double totalSugars = 0;
         for(MealEntry m : meals){
             NutritionFacts nf = m.totalNutritionalValue(t);
             totalCalories += nf.getCalories();

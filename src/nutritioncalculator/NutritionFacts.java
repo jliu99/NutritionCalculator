@@ -1,19 +1,19 @@
 package nutritioncalculator;
 
 public class NutritionFacts implements java.io.Serializable {
-    private int calories;
-    private int total_fat;
-    private int saturated_fat;
-    private int trans_fat;
-    private int cholesterol;
-    private int sodium;
-    private int potassium;
-    private int total_carbohydrate;
-    private int dietary_fiber;
-    private int sugars;
-    private int protein;
+    private double calories;
+    private double total_fat;
+    private double saturated_fat;
+    private double trans_fat;
+    private double cholesterol;
+    private double sodium;
+    private double potassium;
+    private double total_carbohydrate;
+    private double dietary_fiber;
+    private double sugars;
+    private double protein;
     
-    public NutritionFacts(int cal, int tf, int sf, int tsf, int chol, int sod, int p, int tc, int df, int sug, int pro){
+    public NutritionFacts(double cal, double tf, double sf, double tsf, double chol, double sod, double p, double tc, double df, double sug, double pro){
         calories = cal;
         total_fat = tf;
         saturated_fat = sf;
@@ -27,99 +27,99 @@ public class NutritionFacts implements java.io.Serializable {
         protein = pro;
     }
     
-    public int getCalories(){
+    public double getCalories(){
         return calories;
     }
     
-    public void setCalories(int amount){
+    public void setCalories(double amount){
         calories = amount;
     }
     
-    public int getTotalFat(){
+    public double getTotalFat(){
         return total_fat;
     }
     
-    public void setTotalFat(int amount){
+    public void setTotalFat(double amount){
         total_fat = amount;
     }
     
-    public int getSaturatedFat(){
+    public double getSaturatedFat(){
         return saturated_fat;
     }
     
-    public void setSaturatedFat(int amount){
+    public void setSaturatedFat(double amount){
         saturated_fat = amount;
     }
     
-    public int getTransFat(){
+    public double getTransFat(){
         return trans_fat;
     }
     
-    public void setTransFat(int amount){
+    public void setTransFat(double amount){
         trans_fat = amount;
     }
     
-    public int getCholesterol(){
+    public double getCholesterol(){
         return cholesterol;
     }
     
-    public void setCholesterol(int amount){
+    public void setCholesterol(double amount){
         cholesterol = amount;
     }
     
-    public int getSodium(){
+    public double getSodium(){
         return sodium;
     }
     
-    public void setSodium(int amount){
+    public void setSodium(double amount){
         sodium = amount;
     }
     
-    public int getPotassium(){
+    public double getPotassium(){
         return potassium;
     }
     
-    public void setPotassium(int amount){
+    public void setPotassium(double amount){
         potassium = amount;
     }
     
-    public int getTotalCarb(){
+    public double getTotalCarb(){
         return total_carbohydrate;
     }
     
-    public void setTotalCarb(int amount){
+    public void setTotalCarb(double amount){
         total_carbohydrate = amount;
     }
     
-    public int getDietaryFiber(){
+    public double getDietaryFiber(){
         return dietary_fiber;
     }
     
-    public void setDietaryFiber(int amount){
+    public void setDietaryFiber(double amount){
         dietary_fiber = amount;
     }
     
-    public int getSugars(){
+    public double getSugars(){
         return sugars;
     }
     
-    public void setSugars(int amount){
+    public void setSugars(double amount){
         sugars = amount;
     }
     
-    public int getProtein(){
+    public double getProtein(){
         return protein;
     }
     
-    public void setProtein(int amount){
+    public void setProtein(double amount){
         protein = amount;
     }
     
     @Override
     public String toString(){   
-        return "Calories: " + calories + "\nTotal Fat: " + total_fat + "\nSaturated Fat: " + saturated_fat
-                + "\nTrans Fat: " + trans_fat + "\nCholesterol: " + cholesterol + "\nSodium: " + sodium
-                + "\nTotal Carbohydrate: " + total_carbohydrate + "\nDietary Fiber: " + dietary_fiber
-                + "\nSugars: " + sugars + "\nProtein: " + protein;
+        return "Calories: " + calories + " cal \nTotal Fat: " + total_fat + " g \nSaturated Fat: " + saturated_fat
+                + " g \nTrans Fat: " + trans_fat + " g \nCholesterol: " + cholesterol + " mg \nSodium: " + sodium
+                + " mg \nTotal Carbohydrate: " + total_carbohydrate + " g \nDietary Fiber: " + dietary_fiber
+                + " g \nSugars: " + sugars + " g \nProtein: " + protein + " g";
     }
 }
