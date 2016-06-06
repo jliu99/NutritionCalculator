@@ -103,7 +103,7 @@ public class StartController implements Initializable {
         go.setVisible(false);
         tf.setVisible(false);
         try {
-            Main.switchStage();
+            Main.switchStage("main");
         } catch (Exception ex) {
             System.out.println("Something went wrong switching stages.");
             Logger.getLogger(StartController.class.getName()).log(Level.SEVERE, null, ex);

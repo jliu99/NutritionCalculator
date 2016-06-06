@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  * @author jl
  */
 public class Main extends Application {
-    private static Scene start, main;
+    private static Scene start, main, food;
     private static Stage stage;
     
     public static void showStage(){
@@ -33,16 +33,22 @@ public class Main extends Application {
          root = FXMLLoader.load(getClass().getResource("Main.fxml"));
          main = new Scene(root);
          
+         root = FXMLLoader.load(getClass().getResource("Food.fxml"));
+         food = new Scene(root);
+         
          stage.setScene(start);
          stage.show();
      }
      
-     public static void switchStage() throws Exception {
-         if(!stage.getScene().equals(start)){
+     public static void switchStage(String s) throws Exception {
+         if(s.equals("start")){
             stage.setScene(start);
             stage.show(); 
-         }else{
+         }else if(s.equals("main")){
              stage.setScene(main);
+             stage.show();
+         }else{
+             stage.setScene(food);
              stage.show();
          }
      }

@@ -171,7 +171,7 @@ public class MainController implements Initializable {
             toggleViewMode();
             replaceMainTextMessage("Please press the button below to load your data into the interface.");
                 try {
-                    Main.switchStage();
+                    Main.switchStage("start");
                 } catch (Exception ex) {
                     Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -187,6 +187,14 @@ public class MainController implements Initializable {
             dialogBox.setContentText("You're still in the middle of logging a meal. Please try again after you've created or cancelled entering a meal.");
             dialogBox.showAndWait();
         }   
+    }
+    
+      public void toggleIngMode(){
+        try{
+            Main.switchStage("food");
+        } catch(Exception ex){
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void replaceMainTextMessage(String s){
@@ -410,12 +418,6 @@ public class MainController implements Initializable {
         }
     }
     
-    public void toggleIngMode(){
-        addMealB.setVisible(false);
-        editMealB.setVisible(false);
-        deleteMealB.setVisible(false);
-        dayTotalB.setVisible(false);
-    }
     
     //Loads the food on the right based on which list the user specifies
     public void loadFoodList(){
