@@ -7,6 +7,7 @@ package nutritioncalculator;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -103,13 +104,7 @@ public class MainController implements Initializable {
         mainText.getChildren().add(t1);
         UserLog current = NutritionCalculator.currentLog;
         dayEntries = current.getDayEntryList();
-        ArrayList<String> dates = new ArrayList<String>();
-        for(DayEntry d : dayEntries){
-            dates.add(d.getDate());
-        }
-        dates.add("Total");
-        ObservableList<String> obvDates = FXCollections.observableArrayList(dates);
-        days.getItems().addAll(obvDates);
+        refreshDayList();
         NutritionCalculator.loadFoodList();
         NutritionCalculator.loadCustomRecipes();
         loadFoodList();
@@ -210,9 +205,21 @@ public class MainController implements Initializable {
     
     */
     
-    //Selects the day and loads the 
+    public void refreshDayList(){
+        ArrayList<String> dates = new ArrayList<String>();
+        for(DayEntry d : dayEntries){
+            dates.add(d.getDate());
+        }
+        dates.add("Total");
+        ObservableList<String> obvDates = FXCollections.observableArrayList(dates);
+        days.getItems().clear();
+        days.getItems().addAll(obvDates);
+    }
+    
+    //Selects the day and loads its meals
     public void selectDay(){
         mealList.setVisible(true);
+        mealList.getItems().clear();
         String date = days.getSelectionModel().getSelectedItem();
         if(addToMealMode || editMealMode){
             replaceMainTextMessage("Please finish creating this meal before you switch to another day.");
@@ -240,8 +247,11 @@ public class MainController implements Initializable {
         }
     }
     
+    //Only adds today.
     public void addDay(){
-        
+        NutritionCalculator.currentLog.addDay(new Date());
+        dayEntries = NutritionCalculator.currentLog.getDayEntryList();
+        refreshDayList();
     }
     
     public void removeDay(){
@@ -256,8 +266,10 @@ public class MainController implements Initializable {
             Optional<ButtonType> result = dialogBox.showAndWait();
             if (result.get() == ok){
                 NutritionCalculator.currentLog.deleteDay(currentDay);
+                dayEntries = NutritionCalculator.currentLog.getDayEntryList();
                 currentDay = null;
                 replaceMainTextMessage("Day deleted.");
+                refreshDayList();
             } else {
                     // User chose CANCEL or closed the dialog; returns to interface.
             }

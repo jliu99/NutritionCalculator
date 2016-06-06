@@ -94,7 +94,7 @@ public class UserLog implements java.io.Serializable {
     
     public void deleteDay(DayEntry d){
         for (int i = 0; i < days.size(); i++) {
-            if(d.equals(days.get(i))) {
+            if(days.get(i).equals(d)) {
                 days.remove(days.get(i));
             }
         }
